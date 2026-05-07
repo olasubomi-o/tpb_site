@@ -8,7 +8,7 @@ const ease: [number, number, number, number] = [0, 0, 0.2, 1];
 const items = [
   {
     title: "Operators, not consultants",
-    body: "Every person on our team has sat in the room where the hard decisions get made — and lived with the consequences. Apple supply chain. Mastercard payments. Toyota digital. Warner Bros. When we say we've done this before, we mean exactly that.",
+    body: "Every person on our team has sat in the room where the hard decisions get made and lived with the consequences. When we say we've done this before, we mean exactly that.",
   },
   {
     title: "Accountable to outcomes",
@@ -16,11 +16,11 @@ const items = [
   },
   {
     title: "AI that moves the needle",
-    body: "We've deployed AI systems inside enterprise environments and trained the workforces that use them. We know which use cases generate ROI and which ones generate noise. We'll help you build what actually matters — and skip what doesn't.",
+    body: "We've deployed AI systems inside enterprise environments and trained the workforces that use them. We know which use cases generate ROI and which ones generate noise. We'll help you build what actually matters to your business.",
   },
   {
     title: "Built for this moment",
-    body: "The window to build durable competitive advantage is open — but not indefinitely. Whether you're an enterprise accelerating transformation or a founder who needs execution partners, the organizations that act now are the ones that lead next.",
+    body: "The window to build durable competitive advantage is open but not indefinitely. Whether you're an enterprise accelerating transformation or a founder who needs execution partners, the organizations that act now are the ones that lead next.",
   },
 ];
 

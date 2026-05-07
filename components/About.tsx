@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 
 const ease: [number, number, number, number] = [0, 0, 0.2, 1];
@@ -10,13 +11,13 @@ const founders = [
     name: "Olasubomi",
     title: "Co-Founder · AI & Systems",
     bio: "Shipped AI systems and product infrastructure inside Fortune 500 environments. Knows the difference between AI that creates competitive advantage and AI that creates expensive demos. Bridges deep technical fluency with board-level strategic clarity.",
-    initials: "OL",
+    photo: "/Ola_headshot.PNG",
   },
   {
     name: "Oluwaseun",
     title: "Co-Founder · Growth & Commercialization",
     bio: "Has taken products from whiteboard to first dollar across enterprise and startup environments. The commercialization engine of the firm — from market positioning and pilot design to signed contracts and repeatable revenue.",
-    initials: "OS",
+    photo: "/seun_headshot.JPG",
   },
 ];
 
@@ -102,7 +103,7 @@ export default function About() {
             }}
           >
             Two operators. One conviction: the best product partners are the
-            ones who&apos;ve already made your mistakes — and shipped anyway.
+            ones who&apos;ve already made your mistakes and shipped anyway.
           </p>
         </motion.div>
 
@@ -127,30 +128,25 @@ export default function About() {
                 borderRight: i < founders.length - 1 ? "1px solid var(--border)" : "none",
               }}
             >
-              {/* Initials placeholder */}
+              {/* Headshot */}
               <div
                 style={{
-                  width: 72,
-                  height: 72,
-                  border: "1px solid #FF3000",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  width: 96,
+                  height: 96,
                   marginBottom: 36,
+                  overflow: "hidden",
+                  position: "relative",
+                  borderRadius: "50%",
+                  
                 }}
               >
-                <span
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: 20,
-                    fontWeight: 700,
-                    color: "#FF3000",
-                    letterSpacing: "0.06em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {f.initials}
-                </span>
+                <Image
+                  src={f.photo}
+                  alt={f.name}
+                  fill
+                  style={{ objectFit: "cover", objectPosition: "center top", borderRadius: "50%" }}
+                  sizes="96px"
+                />
               </div>
 
               {/* Info */}

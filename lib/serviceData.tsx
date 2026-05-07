@@ -203,8 +203,59 @@ export const services: ServiceData[] = [
       "The most expensive design decision is the one made without talking to a customer first. Design Thinking exists to eliminate exactly that kind of waste.",
   },
   {
-    slug: "workforce-training",
+    slug: "technology",
     number: "05",
+    name: "Technology",
+    tagline: "Engineering that ships. Full-stack delivery from architecture to production, built to scale.",
+    detail:
+      "Full-stack engineering, cloud architecture, and platform development — built by operators who've shipped 40+ products and know what decisions at sprint one prevent disasters at scale.",
+    icon: iconTechnology,
+    heroHeadline: ["Vision To", "Reality."],
+    heroSub:
+      "We've shipped 40+ products across enterprise and startup environments. Full-stack engineering, cloud architecture, and platform delivery — from the first architectural decision to production at scale.",
+    process: [
+      {
+        step: "01",
+        title: "Technical Discovery & Architecture",
+        body: "Requirements analysis, stack selection, and system architecture design. We make the right decisions upfront — the ones that prevent costly rework when traffic spikes and requirements shift.",
+      },
+      {
+        step: "02",
+        title: "Agile Build & Delivery",
+        body: "Sprint-based engineering with weekly demos and tight feedback loops. You see working software early and often — not a big reveal at the end of a long engagement.",
+      },
+      {
+        step: "03",
+        title: "Quality Assurance & Security",
+        body: "Automated testing, peer code review, and security hardening built into every sprint — not bolted on as an afterthought when it's too late to matter.",
+      },
+      {
+        step: "04",
+        title: "Launch, Scale & Support",
+        body: "Production deployment, performance monitoring, and post-launch support. We stay engaged through stabilisation and into scale — because launch is not the finish line.",
+      },
+    ],
+    included: [
+      "Technical scoping and feasibility analysis",
+      "System architecture and stack recommendation",
+      "Frontend, backend, and API development",
+      "Cloud infrastructure design and setup",
+      "Automated testing and QA",
+      "Security review and hardening",
+      "CI/CD pipeline and DevOps setup",
+      "Launch monitoring and post-launch support",
+    ],
+    outcomes: [
+      { stat: "40+", label: "Products shipped" },
+      { stat: "↓ 50%", label: "Avg. time-to-market" },
+      { stat: "99.9%", label: "Platform uptime target" },
+    ],
+    insight:
+      "Technology is not the bottleneck — clarity is. The teams that ship fastest are the ones that spend more time defining what they are building before they start building it.",
+  },
+  {
+    slug: "workforce-training",
+    number: "06",
     name: "Workforce Training",
     tagline: "Build the team that can win — from product fundamentals to AI fluency, hands-on not theoretical.",
     detail:
@@ -253,57 +304,6 @@ export const services: ServiceData[] = [
     ],
     insight:
       "The biggest blocker to better products and AI adoption is not access to tools — it is confidence. Our training is designed to eliminate hesitation and build genuine capability.",
-  },
-  {
-    slug: "technology",
-    number: "06",
-    name: "Technology",
-    tagline: "Engineering that ships. Full-stack delivery from architecture to production, built to scale.",
-    detail:
-      "Full-stack engineering, cloud architecture, and platform development — built by operators who've shipped 40+ products and know what decisions at sprint one prevent disasters at scale.",
-    icon: iconTechnology,
-    heroHeadline: ["Vision To", "Reality."],
-    heroSub:
-      "We've shipped 40+ products across enterprise and startup environments. Full-stack engineering, cloud architecture, and platform delivery — from the first architectural decision to production at scale.",
-    process: [
-      {
-        step: "01",
-        title: "Technical Discovery & Architecture",
-        body: "Requirements analysis, stack selection, and system architecture design. We make the right decisions upfront — the ones that prevent costly rework when traffic spikes and requirements shift.",
-      },
-      {
-        step: "02",
-        title: "Agile Build & Delivery",
-        body: "Sprint-based engineering with weekly demos and tight feedback loops. You see working software early and often — not a big reveal at the end of a long engagement.",
-      },
-      {
-        step: "03",
-        title: "Quality Assurance & Security",
-        body: "Automated testing, peer code review, and security hardening built into every sprint — not bolted on as an afterthought when it's too late to matter.",
-      },
-      {
-        step: "04",
-        title: "Launch, Scale & Support",
-        body: "Production deployment, performance monitoring, and post-launch support. We stay engaged through stabilisation and into scale — because launch is not the finish line.",
-      },
-    ],
-    included: [
-      "Technical scoping and feasibility analysis",
-      "System architecture and stack recommendation",
-      "Frontend, backend, and API development",
-      "Cloud infrastructure design and setup",
-      "Automated testing and QA",
-      "Security review and hardening",
-      "CI/CD pipeline and DevOps setup",
-      "Launch monitoring and post-launch support",
-    ],
-    outcomes: [
-      { stat: "40+", label: "Products shipped" },
-      { stat: "↓ 50%", label: "Avg. time-to-market" },
-      { stat: "99.9%", label: "Platform uptime target" },
-    ],
-    insight:
-      "Technology is not the bottleneck — clarity is. The teams that ship fastest are the ones that spend more time defining what they are building before they start building it.",
   },
 ];
 

@@ -92,7 +92,7 @@ export default function Services() {
               lineHeight: 1.7,
             }}
           >
-Strategy, design, AI, technology, and workforce training — every capability delivered by operators who&apos;ve built at Fortune 500 scale.
+Strategy, design, AI, technology, and workforce training. Every capability delivered by operators who&apos;ve built at Fortune 500 scale and startups.
           </p>
         </motion.div>
 

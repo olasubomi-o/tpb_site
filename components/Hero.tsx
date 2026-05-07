@@ -3,14 +3,14 @@
 import { motion } from "framer-motion";
 
 const credentials = [
-  "Apple",
-  "Mastercard",
-  "Toyota",
-  "Warner Bros",
-  "NCR",
-  "GoPuff",
-  "Eli Lilly",
-  "BASF",
+  { name: "Apple", domain: "apple.com" },
+  { name: "Mastercard", domain: "mastercard.com" },
+  { name: "Toyota", domain: "toyota.com" },
+  { name: "Warner Bros", domain: "warnerbros.com" },
+  { name: "NCR", domain: "ncr.com" },
+  { name: "GoPuff", domain: "gopuff.com" },
+  { name: "Eli Lilly", domain: "lilly.com" },
+  { name: "BASF", domain: "basf.com" },
 ];
 
 const ease: [number, number, number, number] = [0, 0, 0.2, 1];
@@ -148,7 +148,7 @@ export default function Hero() {
           }}
         >
           We&apos;ve shipped inside Apple, Mastercard, Toyota, and Warner Bros.
-          Now we bring that operator edge to your product — faster decisions,
+          Now we bring that operator edge to your product: faster decisions,
           fewer wrong turns, outcomes that matter.
         </motion.p>
 
@@ -157,7 +157,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, ease, delay: 0.25 }}
-          style={{ display: "flex", gap: 0, flexWrap: "wrap" }}
+          style={{ display: "flex", gap: 15, flexWrap: "wrap" }}
         >
           <a
             href="#contact"
@@ -260,33 +260,59 @@ export default function Hero() {
               alignItems: "center",
             }}
           >
-            {credentials.map((name) => (
+            {credentials.map(({ name, domain }) => (
               <span
                 key={name}
                 style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: 11,
-                  fontWeight: 400,
-                  color: "var(--text-muted)",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  padding: "5px 10px",
+                  padding: "8px 16px",
                   border: "1px solid var(--border)",
-                  display: "inline-block",
-                  transition:
-                    "border-color 0.15s ease-out, color 0.15s ease-out",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "border-color 0.15s ease-out, opacity 0.15s ease-out",
                   cursor: "default",
+                  opacity: 0.5,
                 }}
                 onMouseEnter={(e) => {
-                  (e.target as HTMLElement).style.setProperty("border-color", "#FF3000");
-                  (e.target as HTMLElement).style.setProperty("color", "var(--text)");
+                  (e.currentTarget as HTMLElement).style.setProperty("border-color", "#FF3000");
+                  (e.currentTarget as HTMLElement).style.setProperty("opacity", "1");
                 }}
                 onMouseLeave={(e) => {
-                  (e.target as HTMLElement).style.setProperty("border-color", "var(--border)");
-                  (e.target as HTMLElement).style.setProperty("color", "var(--text-muted)");
+                  (e.currentTarget as HTMLElement).style.setProperty("border-color", "var(--border)");
+                  (e.currentTarget as HTMLElement).style.setProperty("opacity", "0.5");
                 }}
               >
-                [ {name} ]
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`https://img.logo.dev/${domain}?token=${process.env.NEXT_PUBLIC_LOGO_DEV_TOKEN}&size=80&format=png&greyscale=true`}
+                  alt={name}
+                  height={20}
+                  style={{
+                    height: 20,
+                    width: "auto",
+                    maxWidth: 80,
+                    objectFit: "contain",
+                    display: "block",
+                  }}
+                  onError={(e) => {
+                    const img = e.currentTarget;
+                    img.style.display = "none";
+                    const fallback = img.nextElementSibling as HTMLElement;
+                    if (fallback) fallback.style.display = "inline";
+                  }}
+                />
+                <span
+                  style={{
+                    display: "none",
+                    fontFamily: "var(--font-display)",
+                    fontSize: 11,
+                    fontWeight: 400,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {name}
+                </span>
               </span>
             ))}
           </div>

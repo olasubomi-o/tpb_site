@@ -12,7 +12,7 @@ const problems = [
   },
   {
     number: "02",
-    text: "AI is reshaping your competitive landscape — and your organization is moving slower than it should.",
+    text: "AI is reshaping your competitive landscape and your organization is moving slower than it should.",
   },
   {
     number: "03",

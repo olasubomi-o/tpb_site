@@ -26,9 +26,8 @@ function useCountUp(target: number, duration = 1200, start = false) {
 
 const stats = [
   { value: 15, suffix: "+", label: "Years Operating at Fortune 500 Scale", unit: "" },
-  { value: 250, suffix: "+", label: "Professionals Trained", unit: "" },
-  { value: 9, suffix: "", label: "Organizations Transformed", unit: "" },
-  { value: 5, suffix: "", label: "Months from Concept to First Customer", unit: "" },
+  { value: 10, suffix: "k+", label: "Professionals Trained", unit: "" },
+  { value: 27, suffix: "", label: "Organizations Transformed", unit: "" },
 ];
 
 function StatItem({
@@ -149,83 +148,89 @@ export default function Stats() {
           ))}
         </div>
 
-        {/* Testimonial */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.3, ease, delay: 0.3 }}
+        {/* Testimonials */}
+        <div
           style={{
-            position: "relative",
-            maxWidth: 800,
-            padding: "64px",
-            border: "1px solid var(--border)",
-            background: "var(--bg-secondary)",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+            gap: 32,
           }}
         >
-          {/* Large quote mark */}
-          <div
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: 80,
-              lineHeight: 1,
-              color: "#FF3000",
-              opacity: 0.3,
-              position: "absolute",
-              top: 32,
-              left: 48,
-              userSelect: "none",
-              pointerEvents: "none",
-            }}
-          >
-            &ldquo;
-          </div>
-
-          <blockquote
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "clamp(22px, 3vw, 36px)",
-              fontWeight: 400,
-              fontStyle: "italic",
-              lineHeight: 1.4,
-              color: "var(--text)",
-              position: "relative",
-              zIndex: 1,
-              marginBottom: 40,
-              paddingTop: 24,
-            }}
-          >
-            It was amazing and eye-opening
-          </blockquote>
-
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 16,
-            }}
-          >
-            <div
+          {[
+            {
+              quote: "It was amazing and eye-opening..I didn’t know you could build products so fast with AI.",
+              cite: "Workshop Participant · AI Workforce Training",
+            },
+            {
+              quote: "They took my vision from 0 to 1, very professional and think long term when building.",
+              cite: "Victoria",
+            },
+          ].map((t, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.3, ease, delay: 0.3 + i * 0.1 }}
               style={{
-                width: 24,
-                height: 1,
-                background: "#FF3000",
-              }}
-            />
-            <cite
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: 10,
-                fontWeight: 400,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "var(--text-muted)",
-                fontStyle: "normal",
+                position: "relative",
+                padding: "64px",
+                border: "1px solid var(--border)",
+                background: "var(--bg-secondary)",
               }}
             >
-              Workshop Participant &middot; AI Workforce Training
-            </cite>
-          </div>
-        </motion.div>
+              <div
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: 80,
+                  lineHeight: 1,
+                  color: "#FF3000",
+                  opacity: 0.3,
+                  position: "absolute",
+                  top: 32,
+                  left: 48,
+                  userSelect: "none",
+                  pointerEvents: "none",
+                }}
+              >
+                &ldquo;
+              </div>
+
+              <blockquote
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "clamp(18px, 2.5vw, 28px)",
+                  fontWeight: 400,
+                  fontStyle: "italic",
+                  lineHeight: 1.4,
+                  color: "var(--text)",
+                  position: "relative",
+                  zIndex: 1,
+                  marginBottom: 40,
+                  paddingTop: 24,
+                }}
+              >
+                {t.quote}
+              </blockquote>
+
+              <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                <div style={{ width: 24, height: 1, background: "#FF3000" }} />
+                <cite
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: 10,
+                    fontWeight: 400,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: "var(--text-muted)",
+                    fontStyle: "normal",
+                  }}
+                >
+                  {t.cite}
+                </cite>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
