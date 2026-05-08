@@ -8,15 +8,15 @@ const ease: [number, number, number, number] = [0, 0, 0.2, 1];
 
 const founders = [
   {
-    name: "Olasubomi",
+    name: `Olasubomi Olawepo`,
     title: "Co-Founder · AI & Systems",
     bio: "Shipped AI systems and product infrastructure inside Fortune 500 environments. Knows the difference between AI that creates competitive advantage and AI that creates expensive demos. Bridges deep technical fluency with board-level strategic clarity.",
     photo: "/Ola_headshot.PNG",
   },
   {
-    name: "Oluwaseun",
+    name: "Oluwaseun Omotayo",
     title: "Co-Founder · Growth & Commercialization",
-    bio: "Has taken products from whiteboard to first dollar across enterprise and startup environments. The commercialization engine of the firm — from market positioning and pilot design to signed contracts and repeatable revenue.",
+    bio: "Has taken products from whiteboard to first dollar across enterprise and startup environments. The commercialization engine of the firm from market positioning and pilot design to signed contracts and repeatable revenue.",
     photo: "/seun_headshot.JPG",
   },
 ];

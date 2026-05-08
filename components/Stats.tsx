@@ -163,7 +163,7 @@ export default function Stats() {
             },
             {
               quote: "They took my vision from 0 to 1, very professional and think long term when building.",
-              cite: "Victoria",
+              cite: "Victoria · Product Development",
             },
           ].map((t, i) => (
             <motion.div

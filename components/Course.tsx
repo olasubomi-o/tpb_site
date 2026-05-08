@@ -21,10 +21,27 @@ export default function Course() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) setSubmitted(true);
+    if (!email) return;
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) throw new Error("failed");
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -128,8 +145,8 @@ export default function Course() {
                 marginBottom: 24,
               }}
             >
-              From Idea to{" "}
-              <span style={{ color: "#FF3000" }}>First Customers</span>
+              From Idea to First Customers{" "}
+              <span style={{ color: "#FF3000" }}>Using AI</span>
             </h2>
 
             <p
@@ -143,10 +160,8 @@ export default function Course() {
                 maxWidth: 480,
               }}
             >
-              A 6-week intensive built for accelerator cohorts and enterprise
-              innovation teams. Every module comes from real operator experience —
-              the kind that doesn&apos;t make it into textbooks. From zero to your
-              first paying customer.
+              An intensive course built for accelerator cohorts and enterprise
+              innovation teams. Every module comes from real operator experience.
             </p>
 
             {/* Audience tags */}
@@ -218,6 +233,7 @@ export default function Course() {
                   />
                   <button
                     type="submit"
+                    disabled={loading}
                     style={{
                       background: "var(--text)",
                       color: "var(--bg)",
@@ -228,21 +244,34 @@ export default function Course() {
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
                       padding: "14px 24px",
-                      cursor: "pointer",
+                      cursor: loading ? "not-allowed" : "pointer",
                       whiteSpace: "nowrap",
                       minHeight: 52,
                       minWidth: 44,
+                      opacity: loading ? 0.6 : 1,
                     }}
                     onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "#FF3000";
+                      if (!loading) (e.currentTarget as HTMLElement).style.background = "#FF3000";
                     }}
                     onMouseLeave={(e) => {
                       (e.currentTarget as HTMLElement).style.background = "var(--text)";
                     }}
                   >
-                    Notify Me
+                    {loading ? "..." : "Notify Me"}
                   </button>
                 </div>
+                {error && (
+                  <p
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: 13,
+                      color: "#FF3000",
+                      marginTop: 10,
+                    }}
+                  >
+                    {error}
+                  </p>
+                )}
               </form>
             ) : (
               <motion.div

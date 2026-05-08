@@ -148,7 +148,7 @@ export default function CTA() {
           }}
         >
           30-minute consultation. No pitch, no fluff. We&apos;ll tell you exactly what
-          we&apos;d do differently — and whether we&apos;re the right fit.
+          we&apos;d do differently and whether we&apos;re the right fit.
         </motion.p>
 
         <motion.div
@@ -157,7 +157,7 @@ export default function CTA() {
           transition={{ duration: 0.3, ease, delay: 0.2 }}
         >
           <a
-            href="mailto:hello@theproductbuilders.co"
+            href="mailto:hello@theproductbuilders.com"
             style={{
               display: "inline-flex",
               alignItems: "center",

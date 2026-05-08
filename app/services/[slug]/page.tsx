@@ -540,7 +540,7 @@ export default function ServicePage({
                       marginTop: 16,
                     }}
                   >
-                    — The Product Builders
+                    The Product Builders
                   </p>
                 </motion.div>
               </motion.div>
@@ -742,7 +742,7 @@ export default function ServicePage({
               }}
             >
               30-minute strategy call. No pitch, no fluff. We&apos;ll tell you exactly
-              what we&apos;d do differently — and whether we&apos;re the right fit.
+              what we&apos;d do differently and whether we&apos;re the right fit.
             </p>
 
             <a

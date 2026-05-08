@@ -12,7 +12,7 @@ const items = [
   },
   {
     title: "Accountable to outcomes",
-    body: "We don't hand you a 90-page deck and disappear. We embed, we build, and we measure against outcomes — not deliverables. One healthcare client went from zero to first paying customer in 5 months. That's the standard we hold ourselves to.",
+    body: "We don't hand you a 90-page deck and disappear. We embed, we build, and we measure against outcomes not deliverables. One healthcare client went from zero to first paying customer in 5 months. That's the standard we hold ourselves to.",
   },
   {
     title: "AI that moves the needle",

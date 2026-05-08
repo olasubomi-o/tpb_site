@@ -15,9 +15,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "The Product Builders — Fortune 500 Operators Now Building With You",
+  title: "The Product Builders Fortune 500 Operators Now Building With You",
   description:
-    "We've shipped inside Apple, Mastercard, Toyota, and Warner Bros. Now we bring that operator edge to your product — AI systems, digital strategy, and product development that creates durable competitive advantage.",
+    "We've shipped inside Apple, Mastercard, Toyota, and Warner Bros. Now we bring that operator edge to your product AI systems, digital strategy, and product development that creates durable competitive advantage.",
   keywords: "product strategy, product development, AI implementation, product design, Fortune 500, enterprise product consulting",
   openGraph: {
     title: "The Product Builders",

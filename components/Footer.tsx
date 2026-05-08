@@ -3,11 +3,11 @@
 import Link from "next/link";
 
 const serviceLinks = [
-  { label: "Product Development", href: "/services/product-development" },
-  { label: "Product Strategy", href: "/services/product-strategy" },
-  { label: "Product Design", href: "/services/product-design" },
-  { label: "AI Training", href: "/services/ai-workforce-training" },
-  { label: "AI Implementation", href: "/services/ai-implementation" },
+  { label: "Product Development", href: "/services/technology" },
+  { label: "Product Strategy", href: "/services/strategy" },
+  { label: "Product Design", href: "/services/design" },
+  { label: "Workforce Training", href: "/services/workforce-training" },
+  { label: "AI Implementation", href: "/services/ai" },
 ];
 
 const companyLinks = [
@@ -78,7 +78,7 @@ export default function Footer() {
                 marginBottom: 32,
               }}
             >
-              Operators from Apple, Mastercard, Toyota, and Warner Bros. Now
+              Operators from Fortune 500 and startups. Now
               building the products and capabilities that define your next decade.
             </p>
             <div
@@ -219,7 +219,7 @@ export default function Footer() {
               color: "var(--text-dim)",
             }}
           >
-            hello@theproductbuilders.co
+            hello@theproductbuilders.com
           </p>
         </div>
       </div>

@@ -64,7 +64,7 @@ export default function Nav() {
           <a
             href="#"
             style={{ textDecoration: "none" }}
-            aria-label="The Product Builders — home"
+            aria-label="The Product Builders home"
           >
             <span
               style={{
@@ -186,7 +186,7 @@ export default function Nav() {
           </div>
 
           {/* Mobile: theme + hamburger */}
-          <div className="md:hidden" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div className="flex md:hidden" style={{ alignItems: "center", gap: 12 }}>
             <button
               onClick={toggleTheme}
               aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
