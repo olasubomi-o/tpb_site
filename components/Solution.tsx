@@ -32,13 +32,13 @@ export default function Solution() {
     <section
       id="solution"
       ref={ref}
+      className="section-py"
       style={{
         background: "var(--bg)",
-        padding: "120px 0",
         borderBottom: "1px solid var(--border)",
       }}
     >
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
+      <div className="container-inner" style={{ maxWidth: 1280, margin: "0 auto" }}>
         {/* Section label */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -73,15 +73,7 @@ export default function Solution() {
           </span>
         </motion.div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "5fr 7fr",
-            gap: "80px",
-            alignItems: "start",
-          }}
-          className="grid-cols-1 md:grid-cols-[5fr_7fr]"
-        >
+        <div className="responsive-grid-5-7">
           {/* Left: Bold statement */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
@@ -89,6 +81,7 @@ export default function Solution() {
             transition={{ duration: 0.3, ease, delay: 0.08 }}
           >
             <h2
+              className="sticky-on-desktop"
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(36px, 4.5vw, 64px)",

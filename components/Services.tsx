@@ -16,14 +16,13 @@ export default function Services() {
     <section
       id="services"
       ref={ref}
-      className="pattern-grid"
+      className="pattern-grid section-py"
       style={{
         background: "var(--bg-secondary)",
-        padding: "120px 0",
         borderBottom: "1px solid var(--border)",
       }}
     >
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
+      <div className="container-inner" style={{ maxWidth: 1280, margin: "0 auto" }}>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -97,13 +96,7 @@ Strategy, design, AI, technology, and workforce training. Every capability deliv
         </motion.div>
 
         {/* Cards grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(5, 1fr)",
-            border: "1px solid var(--border)",
-          }}
-        >
+        <div className="services-grid">
           {services.map((s, i) => {
             const isHovered = hovered === i;
             return (
@@ -118,10 +111,10 @@ Strategy, design, AI, technology, and workforce training. Every capability deliv
                   transition={{ duration: 0.3, ease, delay: 0.05 + i * 0.06 }}
                   onMouseEnter={() => setHovered(i)}
                   onMouseLeave={() => setHovered(null)}
+                  className="service-card-padding"
                   style={{
                     background: isHovered ? "#FF3000" : "var(--bg-secondary)",
                     color: isHovered ? "#080808" : "var(--text)",
-                    padding: "48px 40px",
                     cursor: "pointer",
                     position: "relative",
                     borderRight: "1px solid var(--border)",

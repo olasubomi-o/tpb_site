@@ -50,10 +50,10 @@ export default function Nav() {
         }}
       >
         <div
+          className="container-inner"
           style={{
             maxWidth: 1280,
             margin: "0 auto",
-            padding: "0 40px",
             height: 72,
             display: "flex",
             alignItems: "center",

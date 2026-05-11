@@ -28,13 +28,13 @@ export default function Problem() {
     <section
       id="problem"
       ref={ref}
+      className="section-py"
       style={{
         background: "var(--bg-secondary)",
-        padding: "120px 0",
         borderBottom: "1px solid var(--border)",
       }}
     >
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
+      <div className="container-inner" style={{ maxWidth: 1280, margin: "0 auto" }}>
         {/* Section label */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -69,15 +69,7 @@ export default function Problem() {
           </span>
         </motion.div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 2fr",
-            gap: 80,
-            alignItems: "start",
-          }}
-          className="grid-cols-1 md:grid-cols-[1fr_2fr]"
-        >
+        <div className="responsive-grid-1-2">
           {/* Left: heading */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}

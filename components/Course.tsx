@@ -48,22 +48,14 @@ export default function Course() {
     <section
       id="course"
       ref={ref}
+      className="section-py"
       style={{
         background: "var(--bg)",
-        padding: "120px 0",
         borderBottom: "1px solid var(--border)",
       }}
     >
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 80,
-            alignItems: "start",
-          }}
-          className="grid-cols-1 md:grid-cols-2"
-        >
+      <div className="container-inner" style={{ maxWidth: 1280, margin: "0 auto" }}>
+        <div className="responsive-grid-2">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}

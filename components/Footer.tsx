@@ -33,25 +33,15 @@ export default function Footer() {
 
   return (
     <footer
+      className="footer-outer-padding"
       style={{
         background: "var(--bg)",
         borderTop: "1px solid var(--border)",
-        padding: "80px 40px 48px",
       }}
     >
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
         {/* Top row */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "2fr 1fr 1fr",
-            gap: 80,
-            paddingBottom: 64,
-            borderBottom: "1px solid var(--border)",
-            marginBottom: 40,
-          }}
-          className="grid-cols-1 md:grid-cols-[2fr_1fr_1fr]"
-        >
+        <div className="responsive-grid-footer">
           {/* Brand */}
           <div>
             <div

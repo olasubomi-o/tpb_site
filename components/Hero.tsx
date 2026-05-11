@@ -41,10 +41,10 @@ export default function Hero() {
       />
 
       <div
+        className="hero-inner"
         style={{
           maxWidth: 1280,
           margin: "0 auto",
-          padding: "160px 40px 80px",
           position: "relative",
           zIndex: 1,
           width: "100%",
@@ -252,69 +252,85 @@ export default function Hero() {
           >
             Operators from
           </p>
+
+          {/* Marquee track */}
           <div
             style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "12px 16px",
-              alignItems: "center",
+              overflow: "hidden",
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+              maskImage:
+                "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
             }}
           >
-            {credentials.map(({ name, domain }) => (
-              <span
-                key={name}
-                style={{
-                  padding: "8px 16px",
-                  border: "1px solid var(--border)",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  transition: "border-color 0.15s ease-out, opacity 0.15s ease-out",
-                  cursor: "default",
-                  opacity: 0.5,
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.setProperty("border-color", "#FF3000");
-                  (e.currentTarget as HTMLElement).style.setProperty("opacity", "1");
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.setProperty("border-color", "var(--border)");
-                  (e.currentTarget as HTMLElement).style.setProperty("opacity", "0.5");
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`https://img.logo.dev/${domain}?token=${process.env.NEXT_PUBLIC_LOGO_DEV_TOKEN}&size=80&format=png&greyscale=true`}
-                  alt={name}
-                  height={20}
+            <style>{`
+              @keyframes marquee {
+                from { transform: translateX(0); }
+                to   { transform: translateX(-50%); }
+              }
+              .marquee-track {
+                display: flex;
+                width: max-content;
+                animation: marquee 20s linear infinite;
+              }
+              .marquee-track:hover {
+                animation-play-state: paused;
+              }
+            `}</style>
+            <div className="marquee-track">
+              {[...credentials, ...credentials].map(({ name, domain }, i) => (
+                <div
+                  key={`${name}-${i}`}
                   style={{
-                    height: 20,
-                    width: "auto",
-                    maxWidth: 80,
-                    objectFit: "contain",
-                    display: "block",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "0 48px",
+                    opacity: 0.5,
+                    transition: "opacity 0.15s ease-out",
+                    flexShrink: 0,
                   }}
-                  onError={(e) => {
-                    const img = e.currentTarget;
-                    img.style.display = "none";
-                    const fallback = img.nextElementSibling as HTMLElement;
-                    if (fallback) fallback.style.display = "inline";
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.opacity = "1";
                   }}
-                />
-                <span
-                  style={{
-                    display: "none",
-                    fontFamily: "var(--font-display)",
-                    fontSize: 11,
-                    fontWeight: 400,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.opacity = "0.5";
                   }}
                 >
-                  {name}
-                </span>
-              </span>
-            ))}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://img.logo.dev/${domain}?token=${process.env.NEXT_PUBLIC_LOGO_DEV_TOKEN}&size=160&format=png&greyscale=true`}
+                    alt={name}
+                    style={{
+                      height: 36,
+                      width: "auto",
+                      maxWidth: 120,
+                      objectFit: "contain",
+                      display: "block",
+                    }}
+                    onError={(e) => {
+                      const img = e.currentTarget;
+                      img.style.display = "none";
+                      const fallback = img.nextElementSibling as HTMLElement;
+                      if (fallback) fallback.style.display = "inline";
+                    }}
+                  />
+                  <span
+                    style={{
+                      display: "none",
+                      fontFamily: "var(--font-display)",
+                      fontSize: 11,
+                      fontWeight: 400,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      color: "var(--text-muted)",
+                    }}
+                  >
+                    {name}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

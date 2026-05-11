@@ -85,14 +85,13 @@ export default function Stats() {
     <section
       id="proof"
       ref={ref}
-      className="pattern-stripes"
+      className="pattern-stripes section-py"
       style={{
         background: "var(--bg)",
-        padding: "120px 0",
         borderBottom: "1px solid var(--border)",
       }}
     >
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
+      <div className="container-inner" style={{ maxWidth: 1280, margin: "0 auto" }}>
         {/* Section label */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -149,13 +148,7 @@ export default function Stats() {
         </div>
 
         {/* Testimonials */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
-            gap: 32,
-          }}
-        >
+        <div className="testimonials-grid">
           {[
             {
               quote: "It was amazing and eye-opening..I didn’t know you could build products so fast with AI.",
@@ -171,9 +164,9 @@ export default function Stats() {
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.3, ease, delay: 0.3 + i * 0.1 }}
+              className="testimonial-card-padding"
               style={{
                 position: "relative",
-                padding: "64px",
                 border: "1px solid var(--border)",
                 background: "var(--bg-secondary)",
               }}

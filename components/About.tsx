@@ -29,13 +29,13 @@ export default function About() {
     <section
       id="about"
       ref={ref}
+      className="section-py"
       style={{
         background: "var(--bg-secondary)",
-        padding: "120px 0",
         borderBottom: "1px solid var(--border)",
       }}
     >
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
+      <div className="container-inner" style={{ maxWidth: 1280, margin: "0 auto" }}>
         {/* Section label */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -122,10 +122,9 @@ export default function About() {
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.3, ease, delay: 0.12 + i * 0.08 }}
+              className={`founder-card-padding${i < founders.length - 1 ? " founder-border-responsive" : ""}`}
               style={{
                 background: "var(--bg-secondary)",
-                padding: "56px 48px",
-                borderRight: i < founders.length - 1 ? "1px solid var(--border)" : "none",
               }}
             >
               {/* Headshot */}

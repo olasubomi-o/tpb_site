@@ -13,9 +13,9 @@ export default function CTA() {
     <section
       id="contact"
       ref={ref}
+      className="cta-section-padding"
       style={{
         background: "var(--bg-secondary)",
-        padding: "160px 40px",
         borderBottom: "1px solid var(--border)",
         position: "relative",
         overflow: "hidden",
