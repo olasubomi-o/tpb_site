@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const links = [
   { label: "Services", href: "#services" },
   { label: "About", href: "#about" },
-  { label: "Workshop", href: "#course" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Workshops", href: "/workshops" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -86,28 +88,35 @@ export default function Nav() {
             className="hidden md:flex"
             style={{ alignItems: "center", gap: 36 }}
           >
-            {links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                className="nav-link"
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: 11,
-                  fontWeight: 400,
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  color: "var(--text-muted)",
-                  textDecoration: "none",
-                  minHeight: 44,
-                  display: "inline-flex",
-                  alignItems: "center",
-                }}
-              >
-                <span className="nav-default">{l.label}</span>
-                <span className="nav-hover">{l.label}</span>
-              </a>
-            ))}
+            {links.map((l) => {
+              const linkStyle = {
+                fontFamily: "var(--font-display)",
+                fontSize: 11,
+                fontWeight: 400,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase" as const,
+                color: "var(--text-muted)",
+                textDecoration: "none",
+                minHeight: 44,
+                display: "inline-flex",
+                alignItems: "center",
+              };
+              const inner = (
+                <>
+                  <span className="nav-default">{l.label}</span>
+                  <span className="nav-hover">{l.label}</span>
+                </>
+              );
+              return l.href.startsWith("/") ? (
+                <Link key={l.label} href={l.href} className="nav-link" style={linkStyle}>
+                  {inner}
+                </Link>
+              ) : (
+                <a key={l.label} href={l.href} className="nav-link" style={linkStyle}>
+                  {inner}
+                </a>
+              );
+            })}
 
             {/* Theme toggle */}
             <button
@@ -271,27 +280,29 @@ export default function Nav() {
             borderBottom: "1px solid var(--border)",
           }}
         >
-          {links.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              onClick={() => setMenuOpen(false)}
-              style={{
-                display: "block",
-                fontFamily: "var(--font-display)",
-                fontSize: 28,
-                fontWeight: 700,
-                color: "var(--text)",
-                textDecoration: "none",
-                textTransform: "uppercase",
-                letterSpacing: "0.04em",
-                padding: "14px 0",
-                borderBottom: "1px solid var(--border)",
-              }}
-            >
-              {l.label}
-            </a>
-          ))}
+          {links.map((l) => {
+            const mobileStyle = {
+              display: "block",
+              fontFamily: "var(--font-display)",
+              fontSize: 28,
+              fontWeight: 700,
+              color: "var(--text)",
+              textDecoration: "none",
+              textTransform: "uppercase" as const,
+              letterSpacing: "0.04em",
+              padding: "14px 0",
+              borderBottom: "1px solid var(--border)",
+            };
+            return l.href.startsWith("/") ? (
+              <Link key={l.label} href={l.href} onClick={() => setMenuOpen(false)} style={mobileStyle}>
+                {l.label}
+              </Link>
+            ) : (
+              <a key={l.label} href={l.href} onClick={() => setMenuOpen(false)} style={mobileStyle}>
+                {l.label}
+              </a>
+            );
+          })}
           <a
             href="#contact"
             onClick={() => setMenuOpen(false)}

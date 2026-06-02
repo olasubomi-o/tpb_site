@@ -8,6 +8,7 @@ import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { getServiceBySlug, services } from "@/lib/serviceData";
+import { getCaseStudiesByService, type CaseStudy } from "@/lib/caseStudyData";
 
 const ease: [number, number, number, number] = [0, 0, 0.2, 1];
 
@@ -33,6 +34,7 @@ export default function ServicePage({
   const insightInView = useInView(insightRef, { once: true, margin: "-80px" });
 
   const otherServices = services.filter((s) => s.slug !== service.slug);
+  const relatedStudies = getCaseStudiesByService(service.slug);
 
   return (
     <>
@@ -547,6 +549,214 @@ export default function ServicePage({
             </div>
           </div>
         </section>
+
+        {/* ── Related Case Studies ── */}
+        {relatedStudies.length > 0 && (
+          <section
+            style={{
+              background: "var(--bg)",
+              padding: "120px 0",
+              borderBottom: "1px solid var(--border)",
+            }}
+          >
+            <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
+              <div style={{ marginBottom: 64 }}>
+                <span
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: 11,
+                    fontWeight: 400,
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    color: "#FF3000",
+                  }}
+                >
+                  Proof of Work
+                </span>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-end",
+                    flexWrap: "wrap",
+                    gap: 24,
+                    marginTop: 16,
+                  }}
+                >
+                  <h2
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "clamp(24px, 3vw, 40px)",
+                      fontWeight: 700,
+                      lineHeight: 1.1,
+                      letterSpacing: "-0.01em",
+                      color: "var(--text)",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Related Case Studies
+                  </h2>
+                  <Link
+                    href="/case-studies"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 8,
+                      fontFamily: "var(--font-display)",
+                      fontSize: 10,
+                      fontWeight: 400,
+                      letterSpacing: "0.18em",
+                      textTransform: "uppercase",
+                      color: "var(--text-muted)",
+                      textDecoration: "none",
+                      transition: "color 0.15s ease-out",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.color = "#FF3000";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.color = "var(--text-muted)";
+                    }}
+                  >
+                    All Case Studies
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
+                  gap: 1,
+                  border: "1px solid var(--border)",
+                }}
+              >
+                {relatedStudies.map((study: CaseStudy) => (
+                  <div
+                    key={study.id}
+                    style={{
+                      background: "var(--bg)",
+                      borderRight: "1px solid var(--border)",
+                      borderBottom: "1px solid var(--border)",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    {/* Cover image */}
+                    <div
+                      style={{
+                        width: "100%",
+                        height: 200,
+                        overflow: "hidden",
+                        flexShrink: 0,
+                      }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={study.coverImage}
+                        alt={study.headline}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          objectPosition: "center",
+                          display: "block",
+                          filter: "grayscale(20%)",
+                          transition: "transform 0.4s ease-out",
+                        }}
+                        onMouseEnter={(e) => {
+                          (e.currentTarget as HTMLElement).style.transform = "scale(1.04)";
+                        }}
+                        onMouseLeave={(e) => {
+                          (e.currentTarget as HTMLElement).style.transform = "scale(1)";
+                        }}
+                      />
+                    </div>
+
+                    {/* Content */}
+                    <div style={{ padding: "32px 36px 36px", flex: 1, display: "flex", flexDirection: "column" }}>
+                      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 20 }}>
+                        {study.tags.map((tag) => {
+                          const isActiveService =
+                            tag.toLowerCase() === service.name.toLowerCase();
+                          return (
+                            <span
+                              key={tag}
+                              style={{
+                                fontFamily: "var(--font-display)",
+                                fontSize: 9,
+                                fontWeight: 400,
+                                letterSpacing: "0.14em",
+                                textTransform: "uppercase",
+                                color: isActiveService ? "#FF3000" : "var(--text-muted)",
+                                padding: "3px 8px",
+                                border: `1px solid ${isActiveService ? "#FF3000" : "var(--border)"}`,
+                              }}
+                            >
+                              {tag}
+                            </span>
+                          );
+                        })}
+                      </div>
+
+                      <p
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          fontSize: 10,
+                          fontWeight: 400,
+                          letterSpacing: "0.14em",
+                          textTransform: "uppercase",
+                          color: "var(--text-muted)",
+                          marginBottom: 12,
+                        }}
+                      >
+                        {study.client}
+                      </p>
+
+                      <h3
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          fontSize: "clamp(15px, 1.6vw, 20px)",
+                          fontWeight: 700,
+                          color: "var(--text)",
+                          textTransform: "uppercase",
+                          letterSpacing: "-0.01em",
+                          lineHeight: 1.2,
+                          marginBottom: 20,
+                          flex: 1,
+                        }}
+                      >
+                        {study.headline}
+                      </h3>
+
+                      <div style={{ borderLeft: "2px solid #FF3000", paddingLeft: 12 }}>
+                        {study.outcomes.slice(0, 1).map((outcome, i) => (
+                          <p
+                            key={i}
+                            style={{
+                              fontFamily: "var(--font-display)",
+                              fontSize: 10,
+                              fontWeight: 400,
+                              letterSpacing: "0.1em",
+                              textTransform: "uppercase",
+                              color: "var(--text-muted)",
+                              lineHeight: 1.5,
+                            }}
+                          >
+                            {outcome}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* ── Other Services ── */}
         <section
