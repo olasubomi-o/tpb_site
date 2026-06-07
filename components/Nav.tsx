@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -15,6 +16,13 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  const resolveHref = (href: string) => {
+    if (href.startsWith("#") && !isHome) return `/${href}`;
+    return href;
+  };
 
   useEffect(() => {
     const saved = localStorage.getItem("tpb-theme") as "dark" | "light" | null;
@@ -63,8 +71,8 @@ export default function Nav() {
           }}
         >
           {/* Logo wordmark */}
-          <a
-            href="#"
+          <Link
+            href="/"
             style={{ textDecoration: "none" }}
             aria-label="The Product Builders home"
           >
@@ -81,7 +89,7 @@ export default function Nav() {
             >
               The Product Builders
             </span>
-          </a>
+          </Link>
 
           {/* Desktop links */}
           <div
@@ -107,12 +115,13 @@ export default function Nav() {
                   <span className="nav-hover">{l.label}</span>
                 </>
               );
-              return l.href.startsWith("/") ? (
-                <Link key={l.label} href={l.href} className="nav-link" style={linkStyle}>
+              const resolved = resolveHref(l.href);
+              return resolved.startsWith("/") ? (
+                <Link key={l.label} href={resolved} className="nav-link" style={linkStyle}>
                   {inner}
                 </Link>
               ) : (
-                <a key={l.label} href={l.href} className="nav-link" style={linkStyle}>
+                <a key={l.label} href={resolved} className="nav-link" style={linkStyle}>
                   {inner}
                 </a>
               );
@@ -165,7 +174,7 @@ export default function Nav() {
             </button>
 
             <a
-              href="#contact"
+              href={resolveHref("#contact")}
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: 11,
@@ -293,18 +302,19 @@ export default function Nav() {
               padding: "14px 0",
               borderBottom: "1px solid var(--border)",
             };
-            return l.href.startsWith("/") ? (
-              <Link key={l.label} href={l.href} onClick={() => setMenuOpen(false)} style={mobileStyle}>
+            const resolved = resolveHref(l.href);
+            return resolved.startsWith("/") ? (
+              <Link key={l.label} href={resolved} onClick={() => setMenuOpen(false)} style={mobileStyle}>
                 {l.label}
               </Link>
             ) : (
-              <a key={l.label} href={l.href} onClick={() => setMenuOpen(false)} style={mobileStyle}>
+              <a key={l.label} href={resolved} onClick={() => setMenuOpen(false)} style={mobileStyle}>
                 {l.label}
               </a>
             );
           })}
           <a
-            href="#contact"
+            href={resolveHref("#contact")}
             onClick={() => setMenuOpen(false)}
             style={{
               display: "inline-flex",
