@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Mono, DM_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const spaceMono = Space_Mono({
@@ -36,7 +37,10 @@ export default function RootLayout({
       lang="en"
       className={`${spaceMono.variable} ${dmSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
