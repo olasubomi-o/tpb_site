@@ -77,7 +77,7 @@ const workshops: Workshop[] = [
     description:
       "A practitioner-led deep dive into how operators at Apple, Mastercard, and Toyota have shipped AI-powered products that create real competitive advantage — not proofs of concept that live in slides.",
     status: "upcoming",
-    registrationUrl: "mailto:hello@theproductbuilders.co?subject=AI%20Operator%20Playbook%20Workshop",
+    registrationUrl: "/contact",
   },
   {
     id: "founder-product-intensive-q3-2025",
@@ -90,7 +90,7 @@ const workshops: Workshop[] = [
     description:
       "Everything you need to go from rough idea to a validated problem, a sharp positioning statement, and your first outbound sequence — in one high-density day with operators who have done it from scratch.",
     status: "upcoming",
-    registrationUrl: "mailto:hello@theproductbuilders.co?subject=Founder%20Product%20Intensive",
+    registrationUrl: "/contact",
   },
 ];
 
@@ -847,7 +847,7 @@ export default function WorkshopsPage() {
 
               <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
                 <a
-                  href="mailto:hello@theproductbuilders.co?subject=Custom%20Workshop%20Inquiry"
+                  href="/contact"
                   style={{
                     display: "inline-flex",
                     alignItems: "center",

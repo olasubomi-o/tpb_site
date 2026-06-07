@@ -13,7 +13,7 @@ const serviceLinks = [
 const companyLinks = [
   { label: "About", href: "/#about" },
   { label: "Workshop", href: "/#course" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const linkStyle: React.CSSProperties = {

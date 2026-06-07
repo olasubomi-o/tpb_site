@@ -157,7 +157,7 @@ export default function CTA() {
           transition={{ duration: 0.3, ease, delay: 0.2 }}
         >
           <a
-            href="mailto:hello@theproductbuilders.com"
+            href="/contact"
             style={{
               display: "inline-flex",
               alignItems: "center",

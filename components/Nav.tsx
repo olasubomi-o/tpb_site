@@ -9,7 +9,7 @@ const links = [
   { label: "About", href: "#about" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Workshops", href: "/workshops" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Nav() {
