@@ -114,7 +114,7 @@ Strategy, design, AI, technology, and workforce training. Every capability deliv
                   className="service-card-padding"
                   style={{
                     background: isHovered ? "#FF3000" : "var(--bg-secondary)",
-                    color: isHovered ? "#080808" : "var(--text)",
+                    color: isHovered ? "#F0F0F8" : "var(--text)",
                     cursor: "pointer",
                     position: "relative",
                     borderRight: "1px solid var(--border)",
@@ -125,7 +125,7 @@ Strategy, design, AI, technology, and workforce training. Every capability deliv
                   {/* Icon */}
                   <div
                     style={{
-                      color: isHovered ? "#080808" : "var(--text-muted)",
+                      color: isHovered ? "#F0F0F8" : "var(--text-muted)",
                       marginBottom: 28,
                     }}
                   >
@@ -155,7 +155,7 @@ Strategy, design, AI, technology, and workforce training. Every capability deliv
                       fontSize: 14,
                       fontWeight: 500,
                       color: isHovered
-                        ? "rgba(8,8,8,0.75)"
+                        ? "rgba(240,240,248,0.8)"
                         : "var(--text-muted)",
                       lineHeight: 1.5,
                       marginBottom: 28,
@@ -172,7 +172,7 @@ Strategy, design, AI, technology, and workforce training. Every capability deliv
                       fontWeight: 700,
                       letterSpacing: "0.18em",
                       textTransform: "uppercase",
-                      color: isHovered ? "#080808" : "#FF3000",
+                      color: isHovered ? "#F0F0F8" : "#FF3000",
                       display: "inline-flex",
                       alignItems: "center",
                       gap: 8,
@@ -199,11 +199,11 @@ Strategy, design, AI, technology, and workforce training. Every capability deliv
                         fontFamily: "var(--font-body)",
                         fontSize: 13,
                         fontWeight: 400,
-                        color: "rgba(8,8,8,0.8)",
+                        color: "rgba(240,240,248,0.8)",
                         lineHeight: 1.7,
                         marginTop: 20,
                         paddingTop: 20,
-                        borderTop: "1px solid rgba(8,8,8,0.2)",
+                        borderTop: "1px solid rgba(240,240,248,0.25)",
                       }}
                     >
                       {s.detail}
