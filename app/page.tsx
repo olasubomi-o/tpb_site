@@ -8,6 +8,7 @@ import CaseStudiesPreview from "@/components/CaseStudiesPreview";
 import About from "@/components/About";
 import Course from "@/components/Course";
 import CTA from "@/components/CTA";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
         <About />
         <Course />
         <CTA />
+        <Contact />
       </main>
       <Footer />
     </>

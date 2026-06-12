@@ -1042,7 +1042,7 @@ export default function CaseStudiesPage() {
 
               <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
                 <a
-                  href="mailto:hello@theproductbuilders.co?subject=Strategy%20Call%20Request"
+                  href="/#contact"
                   style={{
                     display: "inline-flex",
                     alignItems: "center",

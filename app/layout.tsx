@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Mono, DM_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import NewsletterPopup from "@/components/NewsletterPopup";
 import "./globals.css";
 
 const spaceMono = Space_Mono({
@@ -39,6 +40,7 @@ export default function RootLayout({
     >
       <body className="min-h-full">
         {children}
+        <NewsletterPopup />
         <Analytics />
       </body>
     </html>

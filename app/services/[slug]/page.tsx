@@ -184,7 +184,7 @@ export default function ServicePage({
               </p>
 
               <a
-                href="mailto:hello@theproductbuilders.co"
+                href="/#contact"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -956,7 +956,7 @@ export default function ServicePage({
             </p>
 
             <a
-              href="mailto:hello@theproductbuilders.co"
+              href="/#contact"
               style={{
                 display: "inline-flex",
                 alignItems: "center",

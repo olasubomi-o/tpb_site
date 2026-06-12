@@ -742,7 +742,7 @@ export default function CaseStudyDetailPage({
               </p>
 
               <a
-                href="mailto:hello@theproductbuilders.co?subject=Strategy%20Call%20Request"
+                href="/#contact"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",

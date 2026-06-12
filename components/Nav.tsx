@@ -127,6 +127,30 @@ export default function Nav() {
               );
             })}
 
+            {/* Newsletter */}
+            <button
+              onClick={() => window.dispatchEvent(new Event("tpb:open-newsletter"))}
+              className="nav-link"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: 11,
+                fontWeight: 400,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: "var(--text-muted)",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                minHeight: 44,
+                display: "inline-flex",
+                alignItems: "center",
+                padding: 0,
+              }}
+            >
+              <span className="nav-default">Newsletter</span>
+              <span className="nav-hover">Newsletter</span>
+            </button>
+
             {/* Theme toggle */}
             <button
               onClick={toggleTheme}
@@ -313,6 +337,30 @@ export default function Nav() {
               </a>
             );
           })}
+          <button
+            onClick={() => {
+              setMenuOpen(false);
+              window.dispatchEvent(new Event("tpb:open-newsletter"));
+            }}
+            style={{
+              display: "block",
+              width: "100%",
+              textAlign: "left",
+              fontFamily: "var(--font-display)",
+              fontSize: 28,
+              fontWeight: 700,
+              color: "var(--text)",
+              background: "none",
+              border: "none",
+              borderBottom: "1px solid var(--border)",
+              textTransform: "uppercase",
+              letterSpacing: "0.04em",
+              padding: "14px 0",
+              cursor: "pointer",
+            }}
+          >
+            Newsletter
+          </button>
           <a
             href={resolveHref("#contact")}
             onClick={() => setMenuOpen(false)}

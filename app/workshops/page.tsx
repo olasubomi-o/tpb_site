@@ -17,85 +17,63 @@ interface Workshop {
   format: string;
   audience: string[];
   description: string;
-  status: "past" | "upcoming";
-  registrationUrl?: string;
+  status: "past";
   recap?: string;
   recordingUrl?: string;
 }
 
 const workshops: Workshop[] = [
   {
-    id: "ai-product-strategy-q1-2025",
-    title: "AI Product Strategy",
-    subtitle: "From Experimentation to Competitive Advantage",
-    date: "March 14, 2025",
+    id: "ai-agents-operations-apr-2026",
+    title: "From Manual to Autonomous",
+    subtitle: "Design AI Agents That Run Your Operations",
+    date: "April 25, 2026",
     location: "New York, NY",
-    format: "Full-Day Intensive",
-    audience: ["Enterprise Teams", "Product Leaders", "Innovation Heads"],
+    format: "Speedrun Workshop",
+    audience: ["Operations Teams", "Product Managers", "Founders"],
     description:
-      "A full-day hands-on session where enterprise product leaders mapped AI opportunities inside their orgs, prioritized use-cases by impact and feasibility, and left with a 90-day AI roadmap they could actually execute.",
+      "A hands-on speedrun where attendees replace manual workflows with AI systems using n8n and multi-agent architecture. Participants build and deploy a fully functional AI system handling a real workflow live — covering lead follow-ups, CRM updates, and internal operations. No coding required.",
     status: "past",
-    recap: "32 leaders from 18 companies. 100% said they'd recommend to a colleague.",
-    recordingUrl: "https://www.youtube.com/watch?v=PLACEHOLDER_1",
   },
   {
-    id: "zero-to-first-customer-q4-2024",
-    title: "Zero to First Customer",
-    subtitle: "Validation, Positioning & Early Revenue",
-    date: "November 8, 2024",
-    location: "Remote",
-    format: "Half-Day Workshop",
-    audience: ["Founders", "Accelerator Cohorts"],
-    description:
-      "A live, intensive workshop for founders in the earliest stages. We worked through customer discovery frameworks, positioning traps to avoid, and the exact conversations that convert prospects into paying customers.",
-    status: "past",
-    recap: "Hosted for 3 accelerator cohorts across Lagos, London, and Toronto.",
-    recordingUrl: "https://www.youtube.com/watch?v=PLACEHOLDER_2",
-  },
-  {
-    id: "product-led-growth-q3-2024",
-    title: "Product-Led Growth",
-    subtitle: "Building Loops That Sell Themselves",
-    date: "September 19, 2024",
-    location: "Toronto, ON",
-    format: "Half-Day Workshop",
-    audience: ["Growth Teams", "Founders", "Enterprise Teams"],
-    description:
-      "We broke down the mechanics of PLG — onboarding hooks, activation metrics, and viral loops — with real examples from operators who have shipped inside Fortune 500 companies and fast-scaling startups.",
-    status: "past",
-    recap: "Sold out. Waitlist of 40+ for the next edition.",
-    recordingUrl: "https://www.youtube.com/watch?v=PLACEHOLDER_3",
-  },
-  {
-    id: "ai-operator-playbook-q2-2025",
-    title: "The AI Operator Playbook",
-    subtitle: "How Operators Ship AI Products That Stick",
-    date: "June 12, 2025",
+    id: "product-development-speedrun-feb-2026",
+    title: "Product Development Speedrun",
+    subtitle: "From Idea to Live Web App in Hours",
+    date: "February 20, 2026",
     location: "New York, NY",
-    format: "Full-Day Intensive",
-    audience: ["Product Managers", "Enterprise Teams", "Innovation Labs"],
+    format: "Speedrun Workshop",
+    audience: ["Founders", "Builders", "Non-Technical PMs"],
     description:
-      "A practitioner-led deep dive into how operators at Apple, Mastercard, and Toyota have shipped AI-powered products that create real competitive advantage — not proofs of concept that live in slides.",
-    status: "upcoming",
-    registrationUrl: "mailto:hello@theproductbuilders.co?subject=AI%20Operator%20Playbook%20Workshop",
+      "A hands-on speedrun where attendees take a product idea from concept to a live, usable web app in just a few hours using AI — covering market research, PRD creation, building secure web apps, and deploying for real use. No prior experience required.",
+    status: "past",
   },
   {
-    id: "founder-product-intensive-q3-2025",
-    title: "Founder Product Intensive",
-    subtitle: "Build. Validate. Sell. In 8 Hours.",
-    date: "August 21, 2025",
-    location: "Remote",
-    format: "Full-Day Intensive",
-    audience: ["Early-Stage Founders", "Accelerator Cohorts"],
+    id: "ai-prototyping-dec-2025",
+    title: "AI Prototyping Workshop",
+    subtitle: "From Idea to Working Demo in Hours",
+    date: "December 13, 2025",
+    location: "New York, NY",
+    format: "Workshop",
+    audience: ["Beginners", "Product Teams", "Founders"],
     description:
-      "Everything you need to go from rough idea to a validated problem, a sharp positioning statement, and your first outbound sequence — in one high-density day with operators who have done it from scratch.",
-    status: "upcoming",
-    registrationUrl: "mailto:hello@theproductbuilders.co?subject=Founder%20Product%20Intensive",
+      "A beginner-friendly, hands-on session where attendees turn AI ideas into real, working prototypes — breaking down ideas, structuring prompts, designing context, and assembling lightweight AI workflows. Participants leave with a functioning prototype and a repeatable framework for future projects.",
+    status: "past",
+  },
+  {
+    id: "pm-interview-nov-2025",
+    title: "Level Up Your PM Interview Game",
+    subtitle: "Think, Communicate & Perform Like a Top Candidate",
+    date: "November 1, 2025",
+    location: "New York, NY",
+    format: "Live Session",
+    audience: ["Aspiring PMs", "Job Seekers", "Career Changers"],
+    description:
+      "A live PM mock interview session designed to help attendees think and perform like a top candidate. Participants experience a real-time mock interview, learn how to structure answers using proven PM frameworks, and get insider tips on what hiring managers actually look for.",
+    status: "past",
   },
 ];
 
 const pastWorkshops = workshops.filter((w) => w.status === "past");
-const upcomingWorkshops = workshops.filter((w) => w.status === "upcoming");
 
 function WorkshopCard({
   workshop,
@@ -106,8 +84,6 @@ function WorkshopCard({
   index: number;
   inView: boolean;
 }) {
-  const isPast = workshop.status === "past";
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -131,20 +107,10 @@ function WorkshopCard({
             alignItems: "center",
             gap: 8,
             padding: "4px 10px",
-            border: `1px solid ${isPast ? "var(--border)" : "#FF3000"}`,
+            border: "1px solid var(--border)",
             marginBottom: 24,
           }}
         >
-          {!isPast && (
-            <div
-              style={{
-                width: 5,
-                height: 5,
-                background: "#FF3000",
-                animation: "pulse 2s infinite",
-              }}
-            />
-          )}
           <span
             style={{
               fontFamily: "var(--font-display)",
@@ -152,10 +118,10 @@ function WorkshopCard({
               fontWeight: 400,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: isPast ? "var(--text-muted)" : "#FF3000",
+              color: "var(--text-muted)",
             }}
           >
-            {isPast ? "Past" : "Upcoming"}
+            Past
           </span>
         </div>
 
@@ -192,8 +158,8 @@ function WorkshopCard({
             fontWeight: 400,
             letterSpacing: "0.12em",
             textTransform: "uppercase",
-            color: isPast ? "var(--text-muted)" : "#FF3000",
-            opacity: isPast ? 0.7 : 1,
+            color: "var(--text-muted)",
+            opacity: 0.7,
           }}
         >
           {workshop.format}
@@ -286,101 +252,63 @@ function WorkshopCard({
 
       {/* Right: CTA */}
       <div style={{ paddingTop: 4 }}>
-        {isPast ? (
-          workshop.recordingUrl ? (
-            <a
-              href={workshop.recordingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: 10,
-                fontWeight: 700,
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                color: "var(--text)",
-                background: "transparent",
-                padding: "12px 24px",
-                textDecoration: "none",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                minHeight: 44,
-                border: "1px solid var(--border)",
-                whiteSpace: "nowrap",
-                transition: "background 0.15s ease-out, color 0.15s ease-out, border-color 0.15s ease-out",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "#FF3000";
-                (e.currentTarget as HTMLElement).style.borderColor = "#FF3000";
-                (e.currentTarget as HTMLElement).style.color = "#fff";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "transparent";
-                (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
-                (e.currentTarget as HTMLElement).style.color = "var(--text)";
-              }}
-            >
-              {/* YouTube play icon */}
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.2" />
-                <path d="M5.5 4.5l4 2.5-4 2.5V4.5z" fill="currentColor" />
-              </svg>
-              Watch Recording
-            </a>
-          ) : (
-            <span
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: 9,
-                fontWeight: 400,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "var(--text-muted)",
-                padding: "10px 20px",
-                border: "1px solid var(--border)",
-                display: "inline-block",
-                opacity: 0.5,
-              }}
-            >
-              Completed
-            </span>
-          )
-        ) : (
+        {workshop.recordingUrl ? (
           <a
-            href={workshop.registrationUrl}
+            href={workshop.recordingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               fontFamily: "var(--font-display)",
               fontSize: 10,
               fontWeight: 700,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: "var(--bg)",
-              background: "var(--text)",
+              color: "var(--text)",
+              background: "transparent",
               padding: "12px 24px",
               textDecoration: "none",
               display: "inline-flex",
               alignItems: "center",
               gap: 8,
               minHeight: 44,
-              border: "1px solid var(--text)",
+              border: "1px solid var(--border)",
               whiteSpace: "nowrap",
-              transition: "background 0.15s ease-out, border-color 0.15s ease-out",
+              transition: "background 0.15s ease-out, color 0.15s ease-out, border-color 0.15s ease-out",
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLElement).style.background = "#FF3000";
               (e.currentTarget as HTMLElement).style.borderColor = "#FF3000";
+              (e.currentTarget as HTMLElement).style.color = "#fff";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "var(--text)";
-              (e.currentTarget as HTMLElement).style.borderColor = "var(--text)";
+              (e.currentTarget as HTMLElement).style.background = "transparent";
+              (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+              (e.currentTarget as HTMLElement).style.color = "var(--text)";
             }}
           >
-            Register
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.2" />
+              <path d="M5.5 4.5l4 2.5-4 2.5V4.5z" fill="currentColor" />
             </svg>
+            Watch Recording
           </a>
+        ) : (
+          <span
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: 9,
+              fontWeight: 400,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "var(--text-muted)",
+              padding: "10px 20px",
+              border: "1px solid var(--border)",
+              display: "inline-block",
+              opacity: 0.5,
+            }}
+          >
+            Completed
+          </span>
         )}
       </div>
     </motion.div>
@@ -389,18 +317,15 @@ function WorkshopCard({
 
 export default function WorkshopsPage() {
   const heroRef = useRef(null);
-  const upcomingRef = useRef(null);
   const pastRef = useRef(null);
   const ctaRef = useRef(null);
 
-  const upcomingInView = useInView(upcomingRef, { once: true, margin: "-80px" });
   const pastInView = useInView(pastRef, { once: true, margin: "-80px" });
   const ctaInView = useInView(ctaRef, { once: true, margin: "-80px" });
 
   return (
     <>
       <style>{`
-        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
         @media (max-width: 768px) {
           .workshop-card {
             grid-template-columns: 1fr !important;
@@ -598,97 +523,8 @@ export default function WorkshopsPage() {
                     Hosted
                   </div>
                 </div>
-                <div style={{ width: 1, height: 40, background: "var(--border)" }} />
-                <div style={{ textAlign: "center" }}>
-                  <div
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: "clamp(28px, 3vw, 40px)",
-                      fontWeight: 700,
-                      color: "#FF3000",
-                      letterSpacing: "-0.02em",
-                      lineHeight: 1,
-                    }}
-                  >
-                    {upcomingWorkshops.length}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: 9,
-                      fontWeight: 400,
-                      letterSpacing: "0.18em",
-                      textTransform: "uppercase",
-                      color: "var(--text-muted)",
-                      marginTop: 6,
-                    }}
-                  >
-                    Upcoming
-                  </div>
-                </div>
               </div>
             </motion.div>
-          </div>
-        </section>
-
-        {/* ── Upcoming Workshops ── */}
-        <section
-          ref={upcomingRef}
-          style={{
-            background: "var(--bg)",
-            padding: "120px 0",
-            borderBottom: "1px solid var(--border)",
-          }}
-        >
-          <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={upcomingInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.3, ease }}
-              style={{ marginBottom: 16 }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
-                <div
-                  style={{
-                    width: 6,
-                    height: 6,
-                    background: "#FF3000",
-                    animation: "pulse 2s infinite",
-                  }}
-                />
-                <span
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: 11,
-                    fontWeight: 400,
-                    letterSpacing: "0.22em",
-                    textTransform: "uppercase",
-                    color: "#FF3000",
-                  }}
-                >
-                  Upcoming
-                </span>
-              </div>
-              <h2
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(24px, 3vw, 40px)",
-                  fontWeight: 700,
-                  lineHeight: 1.1,
-                  letterSpacing: "-0.01em",
-                  color: "var(--text)",
-                  textTransform: "uppercase",
-                }}
-              >
-                Register Now
-              </h2>
-            </motion.div>
-
-            <div style={{ borderTop: "1px solid var(--border)" }}>
-              {upcomingWorkshops.map((w, i) => (
-                <WorkshopCard key={w.id} workshop={w} index={i} inView={upcomingInView} />
-              ))}
-            </div>
           </div>
         </section>
 
@@ -847,7 +683,7 @@ export default function WorkshopsPage() {
 
               <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
                 <a
-                  href="mailto:hello@theproductbuilders.co?subject=Custom%20Workshop%20Inquiry"
+                  href="/#contact"
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
