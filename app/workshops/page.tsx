@@ -34,6 +34,7 @@ const workshops: Workshop[] = [
     description:
       "A hands-on speedrun where attendees replace manual workflows with AI systems using n8n and multi-agent architecture. Participants build and deploy a fully functional AI system handling a real workflow live — covering lead follow-ups, CRM updates, and internal operations. No coding required.",
     status: "past",
+    recordingUrl: "https://theproductbuilders-1940.freshlearn.com/checkout/Course/40437",
   },
   {
     id: "product-development-speedrun-feb-2026",
@@ -46,6 +47,7 @@ const workshops: Workshop[] = [
     description:
       "A hands-on speedrun where attendees take a product idea from concept to a live, usable web app in just a few hours using AI — covering market research, PRD creation, building secure web apps, and deploying for real use. No prior experience required.",
     status: "past",
+    recordingUrl: "https://theproductbuilders-1940.freshlearn.com/checkout/Course/41165",
   },
   {
     id: "ai-prototyping-dec-2025",
@@ -58,6 +60,7 @@ const workshops: Workshop[] = [
     description:
       "A beginner-friendly, hands-on session where attendees turn AI ideas into real, working prototypes — breaking down ideas, structuring prompts, designing context, and assembling lightweight AI workflows. Participants leave with a functioning prototype and a repeatable framework for future projects.",
     status: "past",
+    recordingUrl: "https://theproductbuilders-1940.freshlearn.com/checkout/Course/41167",
   },
   {
     id: "pm-interview-nov-2025",
@@ -251,65 +254,62 @@ function WorkshopCard({
       </div>
 
       {/* Right: CTA */}
-      <div style={{ paddingTop: 4 }}>
-        {workshop.recordingUrl ? (
-          <a
-            href={workshop.recordingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: 10,
-              fontWeight: 700,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: "var(--text)",
-              background: "transparent",
-              padding: "12px 24px",
-              textDecoration: "none",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              minHeight: 44,
-              border: "1px solid var(--border)",
-              whiteSpace: "nowrap",
-              transition: "background 0.15s ease-out, color 0.15s ease-out, border-color 0.15s ease-out",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "#FF3000";
-              (e.currentTarget as HTMLElement).style.borderColor = "#FF3000";
-              (e.currentTarget as HTMLElement).style.color = "#fff";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "transparent";
-              (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
-              (e.currentTarget as HTMLElement).style.color = "var(--text)";
-            }}
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.2" />
-              <path d="M5.5 4.5l4 2.5-4 2.5V4.5z" fill="currentColor" />
-            </svg>
-            Watch Recording
-          </a>
-        ) : (
-          <span
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: 9,
-              fontWeight: 400,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: "var(--text-muted)",
-              padding: "10px 20px",
-              border: "1px solid var(--border)",
-              display: "inline-block",
-              opacity: 0.5,
-            }}
-          >
-            Completed
-          </span>
-        )}
+      <div style={{ paddingTop: 4, display: "flex", flexDirection: "column", gap: 12 }}>
+        <span
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: 9,
+            fontWeight: 400,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "var(--text-muted)",
+            padding: "10px 20px",
+            border: "1px solid var(--border)",
+            display: "inline-block",
+            textAlign: "center",
+            opacity: 0.5,
+          }}
+        >
+          Completed
+        </span>
+
+        <a
+          href={workshop.recordingUrl || "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: 10,
+            fontWeight: 700,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "#fff",
+            background: "#080808",
+            padding: "12px 24px",
+            textDecoration: "none",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 8,
+            minHeight: 44,
+            border: "1px solid #080808",
+            whiteSpace: "nowrap",
+            transition: "background 0.15s ease-out, border-color 0.15s ease-out",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.background = "#FF3000";
+            (e.currentTarget as HTMLElement).style.borderColor = "#FF3000";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.background = "#080808";
+            (e.currentTarget as HTMLElement).style.borderColor = "#080808";
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.2" />
+            <path d="M5.5 4.5l4 2.5-4 2.5V4.5z" fill="currentColor" />
+          </svg>
+          Watch Recording
+        </a>
       </div>
     </motion.div>
   );
