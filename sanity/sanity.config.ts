@@ -7,6 +7,7 @@ export default defineConfig({
   projectId: "bt9s9s96",
   dataset: "production",
   title: "TPB Site CMS",
+  basePath: "/studio",
   plugins: [structureTool()],
   schema: {
     types: [caseStudy, blogPost],
