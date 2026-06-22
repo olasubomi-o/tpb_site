@@ -80,9 +80,9 @@ function PortableBlock({ block }: { block: Record<string, unknown> }) {
           alt={(block.alt as string) ?? ""}
           style={{ width: "100%", height: "auto", display: "block" }}
         />
-        {block.caption && (
+        {!!block.caption && (
           <figcaption style={{ fontFamily: "var(--font-display)", fontSize: 11, color: "var(--text-muted)", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: 12 }}>
-            {block.caption as string}
+            {String(block.caption)}
           </figcaption>
         )}
       </figure>
