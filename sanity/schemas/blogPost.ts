@@ -37,8 +37,9 @@ export default defineType({
     }),
     defineField({
       name: "coverImage",
-      type: "string",
-      title: "Cover Image URL",
+      type: "image",
+      title: "Cover Image",
+      options: { hotspot: true },
     }),
     defineField({
       name: "category",

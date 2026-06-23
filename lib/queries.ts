@@ -56,7 +56,7 @@ const BLOG_POST_FIELDS = `
   slug,
   publishedAt,
   excerpt,
-  coverImage,
+  "coverImage": coverImage.asset->url,
   category,
   tags,
   author,
@@ -105,7 +105,13 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   return sanityClient.fetch(
     `*[_type == "blogPost" && slug.current == $slug][0] {
       ${BLOG_POST_FIELDS},
-      body
+      body[] {
+        ...,
+        _type == "image" => {
+          ...,
+          "asset": asset-> { url }
+        }
+      }
     }`,
     { slug }
   );
