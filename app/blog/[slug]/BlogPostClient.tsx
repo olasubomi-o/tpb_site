@@ -48,14 +48,6 @@ function PortableBlock({ block }: { block: Record<string, unknown> }) {
         </h3>
       );
     }
-    if (style === "blockquote") {
-      return (
-        <blockquote style={{ borderLeft: "2px solid #FF3000", paddingLeft: 24, margin: "32px 0", fontFamily: "var(--font-body)", fontSize: "clamp(16px, 1.3vw, 20px)", fontStyle: "italic", color: "var(--text-muted)", lineHeight: 1.75 }}>
-          {text}
-        </blockquote>
-      );
-    }
-
     const rendered = children.map((child, i) => {
       const marks = child.marks ?? [];
       let el: React.ReactNode = child.text;
@@ -69,6 +61,14 @@ function PortableBlock({ block }: { block: Record<string, unknown> }) {
       }
       return el;
     });
+
+    if (style === "blockquote") {
+      return (
+        <blockquote style={{ borderLeft: "2px solid #FF3000", paddingLeft: 24, margin: "32px 0", fontFamily: "var(--font-body)", fontSize: "clamp(16px, 1.3vw, 20px)", fontStyle: "italic", color: "var(--text-muted)", lineHeight: 1.75 }}>
+          {rendered}
+        </blockquote>
+      );
+    }
 
     return (
       <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(16px, 1.2vw, 18px)", fontWeight: 400, color: "var(--text-muted)", lineHeight: 1.8, marginBottom: 24 }}>
