@@ -25,9 +25,12 @@ function formatDate(iso: string): string {
   });
 }
 
+type MarkDef = { _key: string; _type: string; href?: string };
+
 function PortableBlock({ block }: { block: Record<string, unknown> }) {
   if (block._type === "block") {
     const children = (block.children as Array<{ _type: string; text: string; marks?: string[] }>) ?? [];
+    const markDefs = (block.markDefs as MarkDef[]) ?? [];
     const style = (block.style as string) ?? "normal";
     const text = children.map((c) => c.text).join("");
 
@@ -59,6 +62,11 @@ function PortableBlock({ block }: { block: Record<string, unknown> }) {
       if (marks.includes("strong")) el = <strong key={i}>{el}</strong>;
       if (marks.includes("em")) el = <em key={i}>{el}</em>;
       if (marks.includes("code")) el = <code key={i} style={{ fontFamily: "monospace", background: "var(--bg-secondary)", padding: "2px 6px", fontSize: "0.9em" }}>{el}</code>;
+      const linkMark = marks.find((m) => markDefs.some((def) => def._key === m && def._type === "link"));
+      if (linkMark) {
+        const def = markDefs.find((d) => d._key === linkMark);
+        el = <a key={i} href={def?.href} target="_blank" rel="noopener noreferrer" style={{ color: "#FF3000", textDecoration: "underline", textUnderlineOffset: 3 }}>{el}</a>;
+      }
       return el;
     });
 
