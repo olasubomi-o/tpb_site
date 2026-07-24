@@ -13,27 +13,41 @@ interface Workshop {
   title: string;
   subtitle: string;
   date: string;
+  datetime: string;
   location: string;
   format: string;
   audience: string[];
   description: string;
-  status: "past";
   recap?: string;
   recordingUrl?: string;
+  registrationUrl?: string;
 }
 
 const workshops: Workshop[] = [
+  {
+    id: "claude-cowork-101-aug-2026",
+    title: "Claude Cowork 101",
+    subtitle: "Beyond the Basics",
+    date: "August 15, 2026",
+    datetime: "2026-08-15T10:00:00-04:00",
+    location: "Online (Google Meet)",
+    format: "Virtual Workshop",
+    audience: ["Business Owners", "Sales & Marketing", "Operations Leads"],
+    description:
+      "Built for the actual work of running a business, not just answering questions. Live demos cover cash flow management, customer follow-ups, reporting, pipeline reviews, and lesser-known Claude Cowork workflows — including Excel and PowerPoint integration. Bring one real task or problem you're stuck on.",
+    registrationUrl: "https://luma.com/41lwfh72",
+  },
   {
     id: "ai-agents-operations-apr-2026",
     title: "From Manual to Autonomous",
     subtitle: "Design AI Agents That Run Your Operations",
     date: "April 25, 2026",
+    datetime: "2026-04-25T00:00:00-04:00",
     location: "New York, NY",
     format: "Speedrun Workshop",
     audience: ["Operations Teams", "Product Managers", "Founders"],
     description:
       "A hands-on speedrun where attendees replace manual workflows with AI systems using n8n and multi-agent architecture. Participants build and deploy a fully functional AI system handling a real workflow live — covering lead follow-ups, CRM updates, and internal operations. No coding required.",
-    status: "past",
     recordingUrl: "https://theproductbuilders-1940.freshlearn.com/checkout/Course/40437",
   },
   {
@@ -41,12 +55,12 @@ const workshops: Workshop[] = [
     title: "Product Development Speedrun",
     subtitle: "From Idea to Live Web App in Hours",
     date: "February 20, 2026",
+    datetime: "2026-02-20T00:00:00-05:00",
     location: "New York, NY",
     format: "Speedrun Workshop",
     audience: ["Founders", "Builders", "Non-Technical PMs"],
     description:
       "A hands-on speedrun where attendees take a product idea from concept to a live, usable web app in just a few hours using AI — covering market research, PRD creation, building secure web apps, and deploying for real use. No prior experience required.",
-    status: "past",
     recordingUrl: "https://theproductbuilders-1940.freshlearn.com/checkout/Course/41165",
   },
   {
@@ -54,12 +68,12 @@ const workshops: Workshop[] = [
     title: "AI Prototyping Workshop",
     subtitle: "From Idea to Working Demo in Hours",
     date: "December 13, 2025",
+    datetime: "2025-12-13T00:00:00-05:00",
     location: "New York, NY",
     format: "Workshop",
     audience: ["Beginners", "Product Teams", "Founders"],
     description:
       "A beginner-friendly, hands-on session where attendees turn AI ideas into real, working prototypes — breaking down ideas, structuring prompts, designing context, and assembling lightweight AI workflows. Participants leave with a functioning prototype and a repeatable framework for future projects.",
-    status: "past",
     recordingUrl: "https://theproductbuilders-1940.freshlearn.com/checkout/Course/41167",
   },
   {
@@ -67,25 +81,33 @@ const workshops: Workshop[] = [
     title: "Level Up Your PM Interview Game",
     subtitle: "Think, Communicate & Perform Like a Top Candidate",
     date: "November 1, 2025",
+    datetime: "2025-11-01T00:00:00-04:00",
     location: "New York, NY",
     format: "Live Session",
     audience: ["Aspiring PMs", "Job Seekers", "Career Changers"],
     description:
       "A live PM mock interview session designed to help attendees think and perform like a top candidate. Participants experience a real-time mock interview, learn how to structure answers using proven PM frameworks, and get insider tips on what hiring managers actually look for.",
-    status: "past",
   },
 ];
 
-const pastWorkshops = workshops.filter((w) => w.status === "past");
+const now = new Date();
+const upcomingWorkshops = workshops
+  .filter((w) => new Date(w.datetime) > now)
+  .sort((a, b) => new Date(a.datetime).getTime() - new Date(b.datetime).getTime());
+const pastWorkshops = workshops
+  .filter((w) => new Date(w.datetime) <= now)
+  .sort((a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime());
 
 function WorkshopCard({
   workshop,
   index,
   inView,
+  isPast,
 }: {
   workshop: Workshop;
   index: number;
   inView: boolean;
+  isPast: boolean;
 }) {
   return (
     <motion.div
@@ -124,7 +146,7 @@ function WorkshopCard({
               color: "var(--text-muted)",
             }}
           >
-            Past
+            {isPast ? "Past" : "Upcoming"}
           </span>
         </div>
 
@@ -270,46 +292,85 @@ function WorkshopCard({
             opacity: 0.5,
           }}
         >
-          Completed
+          {isPast ? "Completed" : "Open"}
         </span>
 
-        <a
-          href={workshop.recordingUrl || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: 10,
-            fontWeight: 700,
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            color: "#fff",
-            background: "#080808",
-            padding: "12px 24px",
-            textDecoration: "none",
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            minHeight: 44,
-            border: "1px solid #080808",
-            whiteSpace: "nowrap",
-            transition: "background 0.15s ease-out, border-color 0.15s ease-out",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#FF3000";
-            (e.currentTarget as HTMLElement).style.borderColor = "#FF3000";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#080808";
-            (e.currentTarget as HTMLElement).style.borderColor = "#080808";
-          }}
-        >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.2" />
-            <path d="M5.5 4.5l4 2.5-4 2.5V4.5z" fill="currentColor" />
-          </svg>
-          Watch Recording
-        </a>
+        {isPast ? (
+          <a
+            href={workshop.recordingUrl || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: 10,
+              fontWeight: 700,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "#fff",
+              background: "#080808",
+              padding: "12px 24px",
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              minHeight: 44,
+              border: "1px solid #080808",
+              whiteSpace: "nowrap",
+              transition: "background 0.15s ease-out, border-color 0.15s ease-out",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "#FF3000";
+              (e.currentTarget as HTMLElement).style.borderColor = "#FF3000";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "#080808";
+              (e.currentTarget as HTMLElement).style.borderColor = "#080808";
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.2" />
+              <path d="M5.5 4.5l4 2.5-4 2.5V4.5z" fill="currentColor" />
+            </svg>
+            Watch Recording
+          </a>
+        ) : (
+          <a
+            href={workshop.registrationUrl || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: 10,
+              fontWeight: 700,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "#fff",
+              background: "#FF3000",
+              padding: "12px 24px",
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              minHeight: 44,
+              border: "1px solid #FF3000",
+              whiteSpace: "nowrap",
+              transition: "background 0.15s ease-out, border-color 0.15s ease-out",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "#080808";
+              (e.currentTarget as HTMLElement).style.borderColor = "#080808";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "#FF3000";
+              (e.currentTarget as HTMLElement).style.borderColor = "#FF3000";
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Register Now
+          </a>
+        )}
       </div>
     </motion.div>
   );
@@ -317,9 +378,11 @@ function WorkshopCard({
 
 export default function WorkshopsPage() {
   const heroRef = useRef(null);
+  const upcomingRef = useRef(null);
   const pastRef = useRef(null);
   const ctaRef = useRef(null);
 
+  const upcomingInView = useInView(upcomingRef, { once: true, margin: "-80px" });
   const pastInView = useInView(pastRef, { once: true, margin: "-80px" });
   const ctaInView = useInView(ctaRef, { once: true, margin: "-80px" });
 
@@ -523,10 +586,95 @@ export default function WorkshopsPage() {
                     Hosted
                   </div>
                 </div>
+
+                {upcomingWorkshops.length > 0 && (
+                  <div style={{ textAlign: "center" }}>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontSize: "clamp(28px, 3vw, 40px)",
+                        fontWeight: 700,
+                        color: "var(--text)",
+                        letterSpacing: "-0.02em",
+                        lineHeight: 1,
+                      }}
+                    >
+                      {upcomingWorkshops.length}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontSize: 9,
+                        fontWeight: 400,
+                        letterSpacing: "0.18em",
+                        textTransform: "uppercase",
+                        color: "var(--text-muted)",
+                        marginTop: 6,
+                      }}
+                    >
+                      Upcoming
+                    </div>
+                  </div>
+                )}
               </div>
             </motion.div>
           </div>
         </section>
+
+        {/* ── Upcoming Workshops ── */}
+        {upcomingWorkshops.length > 0 && (
+          <section
+            ref={upcomingRef}
+            className="pattern-grid"
+            style={{
+              background: "var(--bg)",
+              padding: "120px 0",
+              borderBottom: "1px solid var(--border)",
+            }}
+          >
+            <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={upcomingInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.3, ease }}
+                style={{ marginBottom: 16 }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: 11,
+                    fontWeight: 400,
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    color: "#FF3000",
+                  }}
+                >
+                  Register Now
+                </span>
+                <h2
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "clamp(24px, 3vw, 40px)",
+                    fontWeight: 700,
+                    lineHeight: 1.1,
+                    letterSpacing: "-0.01em",
+                    color: "var(--text)",
+                    textTransform: "uppercase",
+                    marginTop: 8,
+                  }}
+                >
+                  Upcoming Workshops
+                </h2>
+              </motion.div>
+
+              <div style={{ borderTop: "1px solid var(--border)" }}>
+                {upcomingWorkshops.map((w, i) => (
+                  <WorkshopCard key={w.id} workshop={w} index={i} inView={upcomingInView} isPast={false} />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* ── Past Workshops ── */}
         <section
@@ -575,7 +723,7 @@ export default function WorkshopsPage() {
 
             <div style={{ borderTop: "1px solid var(--border)" }}>
               {pastWorkshops.map((w, i) => (
-                <WorkshopCard key={w.id} workshop={w} index={i} inView={pastInView} />
+                <WorkshopCard key={w.id} workshop={w} index={i} inView={pastInView} isPast={true} />
               ))}
             </div>
           </div>
