@@ -253,7 +253,7 @@ export default function BlogPostClient({
             {/* Share sidebar — desktop only, pinned to the left of the article */}
             <div
               className="hidden xl:block"
-              style={{ position: "absolute", top: 0, left: -100 }}
+              style={{ position: "absolute", top: 0, bottom: 0, left: -100 }}
             >
               <div style={{ position: "sticky", top: 140 }}>
                 <ShareButtons title={post.title} />
