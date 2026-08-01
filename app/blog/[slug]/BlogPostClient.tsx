@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ShareButtons from "@/components/ShareButtons";
 import type { BlogPost } from "@/lib/queries";
 
 const ease: [number, number, number, number] = [0, 0, 0.2, 1];
@@ -247,8 +248,23 @@ export default function BlogPostClient({
             initial={{ opacity: 0, y: 20 }}
             animate={bodyInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.35, ease }}
-            style={{ maxWidth: 780, margin: "0 auto", padding: "0 40px" }}
+            style={{ maxWidth: 780, margin: "0 auto", padding: "0 40px", position: "relative" }}
           >
+            {/* Share sidebar — desktop only, pinned to the left of the article */}
+            <div
+              className="hidden xl:block"
+              style={{ position: "absolute", top: 0, left: -100 }}
+            >
+              <div style={{ position: "sticky", top: 140 }}>
+                <ShareButtons title={post.title} />
+              </div>
+            </div>
+
+            {/* Share row — mobile/tablet, above the article body */}
+            <div className="flex xl:hidden" style={{ marginBottom: 40 }}>
+              <ShareButtons title={post.title} vertical={false} />
+            </div>
+
             {body.length === 0 ? (
               <p style={{ fontFamily: "var(--font-body)", fontSize: 18, color: "var(--text-muted)", lineHeight: 1.8 }}>
                 Content coming soon.
