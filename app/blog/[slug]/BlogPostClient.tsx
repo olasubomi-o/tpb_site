@@ -266,6 +266,45 @@ export default function BlogPostClient({
               <ShareButtons title={post.title} vertical={false} />
             </div>
 
+            {post.tldr && (
+              <div
+                style={{
+                  border: "1px solid var(--border)",
+                  borderLeft: "3px solid #FF3000",
+                  background: "var(--bg-secondary)",
+                  padding: "28px 32px",
+                  marginBottom: 48,
+                }}
+              >
+                <span
+                  style={{
+                    display: "block",
+                    fontFamily: "var(--font-display)",
+                    fontSize: 11,
+                    fontWeight: 700,
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    color: "#FF3000",
+                    marginBottom: 12,
+                  }}
+                >
+                  Key Takeaways
+                </span>
+                <p
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "clamp(15px, 1.15vw, 17px)",
+                    color: "var(--text)",
+                    lineHeight: 1.7,
+                    margin: 0,
+                    whiteSpace: "pre-line",
+                  }}
+                >
+                  {post.tldr}
+                </p>
+              </div>
+            )}
+
             {body.length === 0 ? (
               <p style={{ fontFamily: "var(--font-body)", fontSize: 18, color: "var(--text-muted)", lineHeight: 1.8 }}>
                 Content coming soon.
@@ -277,6 +316,59 @@ export default function BlogPostClient({
             )}
           </motion.div>
         </section>
+
+        {/* ── FAQ ── */}
+        {post.faq && post.faq.length > 0 && (
+          <section style={{ background: "var(--bg)", padding: "0 0 120px", borderBottom: "1px solid var(--border)" }}>
+            <div style={{ maxWidth: 780, margin: "0 auto", padding: "0 40px" }}>
+              <h2
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(20px, 2.2vw, 32px)",
+                  fontWeight: 700,
+                  color: "var(--text)",
+                  textTransform: "uppercase",
+                  letterSpacing: "-0.01em",
+                  lineHeight: 1.2,
+                  marginBottom: 24,
+                }}
+              >
+                Frequently Asked Questions
+              </h2>
+              {post.faq.map((item, i) => (
+                <details
+                  key={i}
+                  style={{ borderTop: "1px solid var(--border)", padding: "20px 0" }}
+                >
+                  <summary
+                    style={{
+                      cursor: "pointer",
+                      fontFamily: "var(--font-body)",
+                      fontSize: "clamp(16px, 1.2vw, 18px)",
+                      fontWeight: 700,
+                      color: "var(--text)",
+                      listStyle: "none",
+                    }}
+                  >
+                    {item.question}
+                  </summary>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: "clamp(15px, 1.15vw, 17px)",
+                      color: "var(--text-muted)",
+                      lineHeight: 1.75,
+                      marginTop: 14,
+                      marginBottom: 0,
+                    }}
+                  >
+                    {item.answer}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* ── Related posts ── */}
         {related.length > 0 && (
