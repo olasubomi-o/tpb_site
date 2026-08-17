@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Mono, DM_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import NewsletterPopup from "@/components/NewsletterPopup";
 import JsonLd from "@/components/JsonLd";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
@@ -76,6 +77,7 @@ export default function RootLayout({
         <NewsletterPopup />
         <Analytics />
       </body>
+      <GoogleAnalytics gaId="G-MDB0MBCFLG" />
     </html>
   );
 }
