@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { sanityClient } from "./sanity";
 
 export interface CaseStudy {
@@ -18,6 +19,28 @@ export interface CaseStudy {
   featured: boolean;
 }
 
+export interface Author {
+  _id: string;
+  name: string;
+  role?: string;
+  bio?: string;
+  image?: string;
+  sameAs?: string[];
+}
+
+export interface SeoFields {
+  metaTitle?: string;
+  metaDescription?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface BlogPost {
   _id: string;
   title: string;
@@ -28,6 +51,10 @@ export interface BlogPost {
   category: string;
   tags: string[];
   author: string;
+  authorRef?: Author;
+  tldr?: string;
+  faq?: FaqItem[];
+  seo?: SeoFields;
   body: unknown[];
   featured: boolean;
 }
@@ -60,6 +87,16 @@ const BLOG_POST_FIELDS = `
   category,
   tags,
   author,
+  "authorRef": authorRef->{ _id, name, role, bio, "image": image.asset->url, sameAs },
+  tldr,
+  faq,
+  seo {
+    metaTitle,
+    metaDescription,
+    canonicalUrl,
+    noindex,
+    "ogImage": ogImage.asset->url
+  },
   featured
 `;
 
@@ -101,7 +138,7 @@ export async function getFeaturedBlogPosts(): Promise<BlogPost[]> {
   );
 }
 
-export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+export const getBlogPostBySlug = cache(async (slug: string): Promise<BlogPost | null> => {
   return sanityClient.fetch(
     `*[_type == "blogPost" && slug.current == $slug][0] {
       ${BLOG_POST_FIELDS},
@@ -115,7 +152,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     }`,
     { slug }
   );
-}
+});
 
 export async function getBlogPostsByCategory(category: string): Promise<BlogPost[]> {
   return sanityClient.fetch(

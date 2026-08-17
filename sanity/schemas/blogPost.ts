@@ -4,6 +4,13 @@ export default defineType({
   name: "blogPost",
   type: "document",
   title: "Blog Post",
+  fieldsets: [
+    {
+      name: "aeo",
+      title: "FAQ / AI Answers",
+      options: { collapsible: true, collapsed: true },
+    },
+  ],
   fields: [
     defineField({
       name: "title",
@@ -25,9 +32,16 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "authorRef",
+      type: "reference",
+      title: "Author",
+      to: [{ type: "author" }],
+    }),
+    // TODO: remove once all posts have authorRef set
+    defineField({
       name: "author",
       type: "string",
-      title: "Author",
+      title: "Author (legacy — use Author reference above)",
     }),
     defineField({
       name: "excerpt",
@@ -90,6 +104,28 @@ export default defineType({
       type: "boolean",
       title: "Featured",
       initialValue: false,
+    }),
+    defineField({
+      name: "tldr",
+      type: "text",
+      title: "Key Takeaways / TL;DR",
+      rows: 4,
+      description: "Short summary used by AI answer engines to extract a quick, quotable overview.",
+      fieldset: "aeo",
+    }),
+    defineField({
+      name: "faq",
+      type: "array",
+      title: "FAQ",
+      description:
+        "Optional Q&A pairs. Improves eligibility for AI Overviews and answer-engine citations. Leave empty if not applicable.",
+      of: [{ type: "faqItem" }],
+      fieldset: "aeo",
+    }),
+    defineField({
+      name: "seo",
+      type: "seo",
+      title: "SEO & AI Discoverability",
     }),
   ],
   preview: {

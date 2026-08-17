@@ -114,6 +114,7 @@ export default function BlogPostClient({
   const relatedInView = useInView(relatedRef, { once: true, margin: "-80px" });
 
   const body = (post.body ?? []) as Array<Record<string, unknown>>;
+  const authorName = post.authorRef?.name ?? post.author;
 
   return (
     <>
@@ -190,11 +191,11 @@ export default function BlogPostClient({
               <span style={{ fontFamily: "var(--font-display)", fontSize: 11, fontWeight: 400, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--text-muted)" }}>
                 {formatDate(post.publishedAt)}
               </span>
-              {post.author && (
+              {authorName && (
                 <>
                   <div style={{ width: 1, height: 16, background: "var(--border)" }} />
                   <span style={{ fontFamily: "var(--font-display)", fontSize: 11, fontWeight: 400, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--text-muted)" }}>
-                    {post.author}
+                    {authorName}
                   </span>
                 </>
               )}

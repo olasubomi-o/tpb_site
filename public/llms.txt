@@ -1,0 +1,22 @@
+# The Product Builders
+
+> The Product Builders is a product strategy, design, and engineering consultancy run by operators who've shipped inside Apple, Mastercard, Toyota, and Warner Bros. We bring that operator edge to Fortune 500 and growth-stage teams through AI implementation, product strategy, design, and full-stack engineering.
+
+## Services
+- [AI](https://theproductbuilders.com/services/ai): AI systems and automation implementation.
+- [Strategy](https://theproductbuilders.com/services/strategy): Aligning technology investment with business outcomes.
+- [Design](https://theproductbuilders.com/services/design): Customer experience and product design that converts.
+- [Technology](https://theproductbuilders.com/services/technology): Full-stack engineering from architecture to production.
+- [Workforce Training](https://theproductbuilders.com/services/workforce-training): Hands-on product and AI fluency training for teams.
+
+## Case Studies
+- [Case Studies](https://theproductbuilders.com/case-studies): Real client outcomes across AI, strategy, design, and engineering engagements.
+
+## Blog
+- [Blog](https://theproductbuilders.com/blog): Writing on product strategy, AI & automation, design, and technology.
+
+## Workshops
+- [Workshops](https://theproductbuilders.com/workshops): Live and recorded training sessions.
+
+## Contact
+- Email: hello@theproductbuilders.com
