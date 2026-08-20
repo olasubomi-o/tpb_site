@@ -94,9 +94,6 @@ const now = new Date();
 const upcomingWorkshops = workshops
   .filter((w) => new Date(w.datetime) > now)
   .sort((a, b) => new Date(a.datetime).getTime() - new Date(b.datetime).getTime());
-const pastWorkshops = workshops
-  .filter((w) => new Date(w.datetime) <= now)
-  .sort((a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime());
 
 function WorkshopCard({
   workshop,
@@ -297,7 +294,7 @@ function WorkshopCard({
 
         {isPast ? (
           <a
-            href={workshop.recordingUrl || "#"}
+            href={workshop.recordingUrl || "https://youtube.com/@theproductbuilders"}
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -331,7 +328,7 @@ function WorkshopCard({
               <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.2" />
               <path d="M5.5 4.5l4 2.5-4 2.5V4.5z" fill="currentColor" />
             </svg>
-            Watch Recording
+            {workshop.recordingUrl ? "Watch Recording" : "Watch on YouTube"}
           </a>
         ) : (
           <a
@@ -378,12 +375,12 @@ function WorkshopCard({
 
 export default function WorkshopsPage() {
   const heroRef = useRef(null);
+  const notifyRef = useRef(null);
   const upcomingRef = useRef(null);
-  const pastRef = useRef(null);
   const ctaRef = useRef(null);
 
+  const notifyInView = useInView(notifyRef, { once: true, margin: "-80px" });
   const upcomingInView = useInView(upcomingRef, { once: true, margin: "-80px" });
-  const pastInView = useInView(pastRef, { once: true, margin: "-80px" });
   const ctaInView = useInView(ctaRef, { once: true, margin: "-80px" });
 
   return (
@@ -393,6 +390,9 @@ export default function WorkshopsPage() {
           .workshop-card {
             grid-template-columns: 1fr !important;
             gap: 24px !important;
+          }
+          .notify-grid {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>
@@ -559,34 +559,6 @@ export default function WorkshopsPage() {
               </p>
 
               <div style={{ display: "flex", gap: 32, alignItems: "center" }}>
-                <div style={{ textAlign: "center" }}>
-                  <div
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: "clamp(28px, 3vw, 40px)",
-                      fontWeight: 700,
-                      color: "#FF3000",
-                      letterSpacing: "-0.02em",
-                      lineHeight: 1,
-                    }}
-                  >
-                    {pastWorkshops.length}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: 9,
-                      fontWeight: 400,
-                      letterSpacing: "0.18em",
-                      textTransform: "uppercase",
-                      color: "var(--text-muted)",
-                      marginTop: 6,
-                    }}
-                  >
-                    Hosted
-                  </div>
-                </div>
-
                 {upcomingWorkshops.length > 0 && (
                   <div style={{ textAlign: "center" }}>
                     <div
@@ -618,6 +590,228 @@ export default function WorkshopsPage() {
                 )}
               </div>
             </motion.div>
+          </div>
+        </section>
+
+        {/* ── Never Miss a Workshop ── */}
+        <section
+          ref={notifyRef}
+          style={{
+            background: "var(--bg)",
+            padding: "100px 40px",
+            borderBottom: "1px solid var(--border)",
+          }}
+        >
+          <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={notifyInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.3, ease }}
+              style={{ marginBottom: 48 }}
+            >
+              <span
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: 11,
+                  fontWeight: 400,
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color: "#FF3000",
+                }}
+              >
+                Stay Connected /
+              </span>
+              <h2
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(24px, 3vw, 40px)",
+                  fontWeight: 700,
+                  lineHeight: 1.1,
+                  letterSpacing: "-0.01em",
+                  color: "var(--text)",
+                  textTransform: "uppercase",
+                  marginTop: 8,
+                }}
+              >
+                Never Miss a Workshop
+              </h2>
+            </motion.div>
+
+            <div
+              className="notify-grid"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: 24,
+              }}
+            >
+              {/* Get Notified */}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={notifyInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.3, ease, delay: 0.06 }}
+                style={{
+                  position: "relative",
+                  border: "1px solid var(--border)",
+                  padding: "48px 40px",
+                  overflow: "hidden",
+                }}
+              >
+                {[
+                  { top: 16, left: 16, borderTop: "1px solid #FF3000", borderLeft: "1px solid #FF3000" },
+                  { bottom: 16, right: 16, borderBottom: "1px solid #FF3000", borderRight: "1px solid #FF3000" },
+                ].map((style, i) => (
+                  <div key={i} style={{ position: "absolute", width: 24, height: 24, pointerEvents: "none", ...style }} />
+                ))}
+
+                <h3
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "clamp(18px, 1.6vw, 24px)",
+                    fontWeight: 700,
+                    color: "var(--text)",
+                    textTransform: "uppercase",
+                    letterSpacing: "-0.01em",
+                    marginBottom: 16,
+                  }}
+                >
+                  Get Notified
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: 15,
+                    fontWeight: 400,
+                    color: "var(--text-muted)",
+                    lineHeight: 1.75,
+                    marginBottom: 32,
+                    maxWidth: 420,
+                  }}
+                >
+                  Follow us on Luma to catch every new workshop the moment it&apos;s announced.
+                </p>
+                <a
+                  href="https://luma.com/tpb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: 10,
+                    fontWeight: 700,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: "#fff",
+                    background: "#FF3000",
+                    padding: "14px 28px",
+                    textDecoration: "none",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 8,
+                    minHeight: 44,
+                    border: "1px solid #FF3000",
+                    whiteSpace: "nowrap",
+                    transition: "background 0.15s ease-out, border-color 0.15s ease-out",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.background = "#080808";
+                    (e.currentTarget as HTMLElement).style.borderColor = "#080808";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.background = "#FF3000";
+                    (e.currentTarget as HTMLElement).style.borderColor = "#FF3000";
+                  }}
+                >
+                  Follow on Luma
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+              </motion.div>
+
+              {/* Watch Past Sessions */}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={notifyInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.3, ease, delay: 0.12 }}
+                style={{
+                  position: "relative",
+                  border: "1px solid var(--border)",
+                  padding: "48px 40px",
+                  overflow: "hidden",
+                }}
+              >
+                {[
+                  { top: 16, left: 16, borderTop: "1px solid var(--border)", borderLeft: "1px solid var(--border)" },
+                  { bottom: 16, right: 16, borderBottom: "1px solid var(--border)", borderRight: "1px solid var(--border)" },
+                ].map((style, i) => (
+                  <div key={i} style={{ position: "absolute", width: 24, height: 24, pointerEvents: "none", ...style }} />
+                ))}
+
+                <h3
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "clamp(18px, 1.6vw, 24px)",
+                    fontWeight: 700,
+                    color: "var(--text)",
+                    textTransform: "uppercase",
+                    letterSpacing: "-0.01em",
+                    marginBottom: 16,
+                  }}
+                >
+                  Watch Past Sessions
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: 15,
+                    fontWeight: 400,
+                    color: "var(--text-muted)",
+                    lineHeight: 1.75,
+                    marginBottom: 32,
+                    maxWidth: 420,
+                  }}
+                >
+                  Recordings and highlights from past sessions live on our YouTube channel.
+                </p>
+                <a
+                  href="https://youtube.com/@theproductbuilders"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: 10,
+                    fontWeight: 700,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: "#fff",
+                    background: "#080808",
+                    padding: "14px 28px",
+                    textDecoration: "none",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 8,
+                    minHeight: 44,
+                    border: "1px solid #080808",
+                    whiteSpace: "nowrap",
+                    transition: "background 0.15s ease-out, border-color 0.15s ease-out",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.background = "#FF3000";
+                    (e.currentTarget as HTMLElement).style.borderColor = "#FF3000";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.background = "#080808";
+                    (e.currentTarget as HTMLElement).style.borderColor = "#080808";
+                  }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.2" />
+                    <path d="M5.5 4.5l4 2.5-4 2.5V4.5z" fill="currentColor" />
+                  </svg>
+                  Watch on YouTube
+                </a>
+              </motion.div>
+            </div>
           </div>
         </section>
 
@@ -675,59 +869,6 @@ export default function WorkshopsPage() {
             </div>
           </section>
         )}
-
-        {/* ── Past Workshops ── */}
-        <section
-          ref={pastRef}
-          className="pattern-grid"
-          style={{
-            background: "var(--bg-secondary)",
-            padding: "120px 0",
-            borderBottom: "1px solid var(--border)",
-          }}
-        >
-          <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={pastInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.3, ease }}
-              style={{ marginBottom: 16 }}
-            >
-              <span
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: 11,
-                  fontWeight: 400,
-                  letterSpacing: "0.22em",
-                  textTransform: "uppercase",
-                  color: "var(--text-muted)",
-                }}
-              >
-                Archive
-              </span>
-              <h2
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(24px, 3vw, 40px)",
-                  fontWeight: 700,
-                  lineHeight: 1.1,
-                  letterSpacing: "-0.01em",
-                  color: "var(--text)",
-                  textTransform: "uppercase",
-                  marginTop: 8,
-                }}
-              >
-                Past Workshops
-              </h2>
-            </motion.div>
-
-            <div style={{ borderTop: "1px solid var(--border)" }}>
-              {pastWorkshops.map((w, i) => (
-                <WorkshopCard key={w.id} workshop={w} index={i} inView={pastInView} isPast={true} />
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* ── Custom Workshop CTA ── */}
         <section
