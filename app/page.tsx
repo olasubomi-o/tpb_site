@@ -6,7 +6,6 @@ import Services from "@/components/Services";
 import Stats from "@/components/Stats";
 import CaseStudiesPreview from "@/components/CaseStudiesPreview";
 import About from "@/components/About";
-import Course from "@/components/Course";
 import CTA from "@/components/CTA";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -23,7 +22,6 @@ export default function Home() {
         <Services />
         <Stats />
         <About />
-        <Course />
         <CTA />
         <Contact />
       </main>

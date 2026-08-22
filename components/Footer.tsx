@@ -12,7 +12,7 @@ const serviceLinks = [
 
 const companyLinks = [
   { label: "About", href: "/#about" },
-  { label: "Workshop", href: "/#course" },
+  { label: "Workshops", href: "/workshops" },
   { label: "Contact", href: "/#contact" },
 ];
 
