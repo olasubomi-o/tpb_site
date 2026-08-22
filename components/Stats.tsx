@@ -151,8 +151,8 @@ export default function Stats() {
         <div className="testimonials-grid">
           {[
             {
-              quote: "It was amazing and eye-opening..I didn’t know you could build products so fast with AI.",
-              cite: "Workshop Participant · AI Workforce Training",
+              quote: "It was amazing and eye-opening — I didn’t know you could build products so fast with AI.",
+              cite: "Operations Lead · AI Workforce Training Workshop",
             },
             {
               quote: "They took my vision from 0 to 1, very professional and think long term when building.",

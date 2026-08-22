@@ -147,7 +147,7 @@ export default function Hero() {
             marginBottom: 48,
           }}
         >
-          We&apos;ve shipped inside Apple, Mastercard, Toyota, and Warner Bros.
+          We&apos;ve delivered products inside Apple, Mastercard, Toyota, and Warner Bros.
           Now we bring that operator edge to your product: faster decisions,
           fewer wrong turns, outcomes that matter.
         </motion.p>

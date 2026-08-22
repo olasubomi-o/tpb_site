@@ -113,7 +113,7 @@ export default function NewsletterPopup() {
               </h2>
 
               <p style={{ fontFamily: "var(--font-body)", fontSize: 15, color: "var(--text-muted)", lineHeight: 1.7, margin: "0 0 32px" }}>
-              Each week, get the AI developments that actually matter for your business, practical things you didn't know AI could do, and quick translations of the jargon everyone's throwing around — all in under 5 minutes. No hype, no noise, just what you need to make smarter calls.              </p>
+              Every week: the AI developments that actually matter for your business, practical use cases you haven&apos;t seen yet, and plain-language translations of the jargon everyone&apos;s throwing around. Under 5 minutes. No hype, no noise — just what you need to make smarter calls.</p>
 
               <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
                 <a

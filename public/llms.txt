@@ -1,0 +1,24 @@
+# The Product Builders
+
+> The Product Builders is a product development and AI consulting firm. We build AI systems, digital strategy, product design, and full-stack engineering for enterprise teams and startups, led by operators who have delivered products inside Apple, Mastercard, Toyota, and Warner Bros.
+
+We work across industries — our case studies span healthcare, fintech, edtech, beauty technology, nonprofit operations, catering, and enterprise software. We are not a traditional consulting firm: we build and deliver working products, not just recommendations.
+
+## Services
+
+- [AI Implementation](https://theproductbuilders.com/services/ai): Production AI agents that plug into existing tools and workflows, not prototypes or demos.
+- [Product Strategy](https://theproductbuilders.com/services/strategy): Digital roadmaps and transformation planning built for activation, not shelf-ware.
+- [Product Design](https://theproductbuilders.com/services/design): UX research and design that bridges customer needs with business requirements.
+- [Technology & Engineering](https://theproductbuilders.com/services/technology): Full-stack engineering and cloud architecture, from architecture to production.
+- [Workforce Training](https://theproductbuilders.com/services/workforce-training): Hands-on training in product development and AI, custom-built for each team.
+
+## Proof of Work
+
+- [Case Studies](https://theproductbuilders.com/case-studies): Documented client engagements with measured outcomes (cost savings, conversion lift, time-to-market) across a range of industries.
+- [Workshops & Intensives](https://theproductbuilders.com/workshops): Live, hands-on sessions on AI agents, product development, and building with AI.
+- [Blog](https://theproductbuilders.com/blog): Strategy, AI, and product thinking from the team.
+
+## Contact
+
+- Email: hello@theproductbuilders.com
+- Contact form: https://theproductbuilders.com/#contact

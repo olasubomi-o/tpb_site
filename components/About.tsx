@@ -10,7 +10,7 @@ const founders = [
   {
     name: `Olasubomi Olawepo`,
     title: "Co-Founder · AI & Systems",
-    bio: "Shipped AI systems and product infrastructure inside Fortune 500 environments. Knows the difference between AI that creates competitive advantage and AI that creates expensive demos. Bridges deep technical fluency with board-level strategic clarity.",
+    bio: "Delivered AI systems and product infrastructure inside Fortune 500 environments. Knows the difference between AI that creates competitive advantage and AI that creates expensive demos. Bridges deep technical fluency with board-level strategic clarity.",
     photo: "/Ola_headshot.PNG",
   },
   {
@@ -103,7 +103,7 @@ export default function About() {
             }}
           >
             Two operators. One conviction: the best product partners are the
-            ones who&apos;ve already made your mistakes and shipped anyway.
+            ones who&apos;ve already made your mistakes and delivered anyway.
           </p>
         </motion.div>
 
